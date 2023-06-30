@@ -1,0 +1,5 @@
+name: backend-nc
+recipe: laravel
+config:
+  webroot: app/public
+  php: '8.1'
