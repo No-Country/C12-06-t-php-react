@@ -18,7 +18,6 @@ class CreateClientsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('phone_number');
-            $table->text('note')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
