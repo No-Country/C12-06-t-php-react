@@ -3,3 +3,8 @@ recipe: laravel
 config:
   webroot: app/public
   php: '8.1'
+
+services:
+  phpadmin:
+    type: phpmyadmin
+    hosts: database
