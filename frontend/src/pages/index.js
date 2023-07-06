@@ -1,3 +1,4 @@
+
 import { Inter } from 'next/font/google';
 import { Testimonials } from '@/components/Testimonials';
 import { CardSlider } from '@/components/CardSlider';
@@ -12,4 +13,5 @@ export default function Home() {
             <Testimonials />
         </main>
     );
+
 }
