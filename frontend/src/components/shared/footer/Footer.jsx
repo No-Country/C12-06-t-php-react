@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <footer className="w-full flex flex-col gap-4 pl-4 pt-20 bg-DarkSlateGray md:px-8 md:pt-12">
             <div className="w-full flex flex-col items-start justify-start gap-8 md:flex-row">
-                <article className="w-full grid grid-cols-2 gap-y-8 gap-x-4 tablet:grid-cols-4">
+                <article className="w-full grid grid-cols-2 gap-y-8 gap-x-4 sm:grid-cols-4">
                     <ul className="w-full">
                         <span className="text-DarkGray uppercase">SOLUTIONS</span>
                         {dataFooter.solutions?.map((solution) => (
