@@ -1,9 +1,5 @@
 import { Card } from './Card';
 
-// llamar asi en el home
-// <CardSlider type="offers" />
-// <CardSlider type="tendencies" />
-
 export const CardSlider = ({ type }) => {
     const text = {
         tendencies: {
