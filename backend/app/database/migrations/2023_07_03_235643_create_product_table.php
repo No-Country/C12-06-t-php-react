@@ -27,7 +27,9 @@ class CreateProductTable extends Migration
             $table->integer('calification')->nullable();
             $table->timestamps();
 
-            $table->foreign('city_id')->references('id')->on('cities');
+            // Not allowed on PlanetScale
+            // https://planetscale.com/docs/learn/operating-without-foreign-key-constraints
+            // $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 
