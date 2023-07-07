@@ -20,8 +20,10 @@ class CreateBookingTable extends Migration
             $table->integer('state');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('client_id')->references('id')->on('clients');
+            // Not allowed on PlanetScale
+            // https://planetscale.com/docs/learn/operating-without-foreign-key-constraints
+            // $table->foreign('product_id')->references('id')->on('products');
+            // $table->foreign('client_id')->references('id')->on('clients');
         });
     }
 

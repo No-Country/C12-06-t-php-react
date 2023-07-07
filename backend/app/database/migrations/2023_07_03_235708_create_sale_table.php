@@ -20,8 +20,10 @@ class CreateSaleTable extends Migration
             $table->string('comment')->nullable();
             $table->timestamps();
 
-            $table->foreign('booking_id')->references('id')->on('bookings');
-            $table->foreign('product_id')->references('id')->on('products');
+            // Not allowed on PlanetScale
+            // https://planetscale.com/docs/learn/operating-without-foreign-key-constraints
+            // $table->foreign('booking_id')->references('id')->on('bookings');
+            // $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

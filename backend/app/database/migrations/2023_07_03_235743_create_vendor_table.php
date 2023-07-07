@@ -19,8 +19,10 @@ class CreateVendorTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('product_id')->references('id')->on('products');
+            // Not allowed on PlanetScale
+            // https://planetscale.com/docs/learn/operating-without-foreign-key-constraints
+            // $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
