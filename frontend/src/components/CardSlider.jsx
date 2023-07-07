@@ -24,9 +24,9 @@ export const CardSlider = ({ type }) => {
     return (
         <div className="flex flex-col gap-4 p-5">
             <h3 className="font-extrabold text-4xl">{text[type].title}</h3>
-            <p className="text-gray-500 text-xl">{text[type].p}</p>
+            <p className="text-SlateGray text-xl">{text[type].p}</p>
             <div className="flex gap-5 relative w-max md:flex-row flex-col">
-                <button className="bg-orange-300 absolute text-white p-3 text-xl rounded-full w-11 h-11 flex justify-center items-center top-2/4 -right-5">
+                <button className="bg-Coral absolute text-White p-3 text-xl rounded-full w-11 h-11 flex justify-center items-center top-2/4 -right-5">
                     &gt;
                 </button>
                 {cards.map((item) => (
