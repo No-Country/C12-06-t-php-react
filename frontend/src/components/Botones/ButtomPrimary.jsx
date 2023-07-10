@@ -6,7 +6,7 @@ const ButtomPrimary = ({ text, onClick }) => {
             <button
                 onClick={onClick}
                 className="w-[132px] h-[42px] bg-[#EA580C] rounded-md">
-                <p>{text}</p>
+                <p  className='text-Black'>{text}</p>
             </button>
         </div>
     )
