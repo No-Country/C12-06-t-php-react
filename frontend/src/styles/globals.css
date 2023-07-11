@@ -37,8 +37,8 @@ body {
     margin: 0; /* Elimina el margen por defecto en Chrome */
 }
 
-.swiper-button-next,
-.swiper-button-prev {
+.home-swiper .swiper-button-next,
+.home-swiper .swiper-button-prev {
     color: #fff;
     background: #fb923c;
     font-size: 1rem;
@@ -47,8 +47,8 @@ body {
     border-radius: 100%;
 }
 
-.swiper-button-next::after,
-.swiper-button-prev::after {
+.home-swiper .swiper-button-next::after,
+.home-swiper .swiper-button-prev::after {
     font-size: 1rem;
     font-weight: bold;
 }
