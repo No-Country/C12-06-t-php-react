@@ -2,7 +2,7 @@ export const Card = ({ data }) => {
     const { city, seller, createdAt, price } = data;
 
     return (
-        <div className="w-[390px] h-[351px] shadow-lg rounded-lg overflow-hidden">
+        <div className="w-[330px] md:w-[390px] h-[351px] shadow-lg rounded-lg overflow-hidden">
             <img src="https://picsum.photos/400" className="w-full h-[192px]" />
             <div className="flex flex-col w-full p-6 gap-2">
                 <span className="text-OrangeRed font-medium text-sm">{city}</span>
