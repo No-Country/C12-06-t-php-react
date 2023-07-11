@@ -42,4 +42,7 @@ class Product extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    const STATUS_NEW = 1;
+    const STATUS_USED = 2;
 }

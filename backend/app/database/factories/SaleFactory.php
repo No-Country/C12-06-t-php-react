@@ -20,7 +20,7 @@ class SaleFactory extends Factory {
         return [
             'booking_id' => $this->faker->numberBetween(1, 20),
             'product_id' => $this->faker->numberBetween(1, 30),
-            'comment' => $this->faker->paragraph()
+            'comment' => $this->faker->text(255)
         ];
     }
 }
