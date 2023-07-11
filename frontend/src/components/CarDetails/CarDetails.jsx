@@ -1,5 +1,6 @@
 import { Icons } from '../Icons';
 import { SellerInfo } from '../shared/SellerInfo';
+import { ImageSlider } from './ImageSlider';
 import { Tag } from './Tag';
 
 export const CarDetails = () => {
@@ -8,7 +9,7 @@ export const CarDetails = () => {
             <div className="flex gap-16">
                 <div className="carimg flex flex-col w-1/2">
                     <img src="https://picsum.photos/500" className="rounded-3xl aspect-[6/4] object-cover" />
-                    <div className="slider"></div>
+                    <ImageSlider />
                 </div>
                 <div className="flex flex-col gap-4 w-1/2 items-start">
                     <Tag />
