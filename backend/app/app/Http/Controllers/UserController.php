@@ -54,4 +54,10 @@ class UserController extends Controller
         $user->delete();
         return response()->json(null, 204);
     }
+
+    public function __construct()
+    {
+    $this->middleware('access')->only(['show', 'update']);
+    }
+
 }
