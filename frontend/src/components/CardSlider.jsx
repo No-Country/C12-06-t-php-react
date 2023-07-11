@@ -34,7 +34,7 @@ export const CardSlider = ({ type }) => {
 
             <Swiper
                 slidesPerView={'auto'}
-                className="md:max-w-[85vw] max-w-[95vw] md:px-8 px-2 py-8"
+                className="home-swiper md:max-w-[85vw] max-w-[95vw] md:px-8 px-2 py-8"
                 navigation={true}
                 freeMode={true}
                 spaceBetween={20}
