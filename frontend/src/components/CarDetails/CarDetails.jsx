@@ -1,3 +1,4 @@
+import { Icons } from '../Icons';
 import { SellerInfo } from '../shared/SellerInfo';
 import { Tag } from './Tag';
 
@@ -9,7 +10,7 @@ export const CarDetails = () => {
                     <img src="https://picsum.photos/500" className="rounded-3xl aspect-[6/4] object-cover" />
                     <div className="slider"></div>
                 </div>
-                <div className="flex flex-col gap-4 w-1/2">
+                <div className="flex flex-col gap-4 w-1/2 items-start">
                     <Tag />
                     <div className="flex flex-col gap-2">
                         <span className="font-extrabold text-[40px]">$ 12.000.000</span>
@@ -22,6 +23,12 @@ export const CarDetails = () => {
                         Elit sunt amet fugiat veniam occaecat fugiat aliqua.{' '}
                     </p>
                     <SellerInfo />
+                    <div className="flex gap-4">
+                        <button className="bg-OrangeRed rounded-md">
+                            <p className="text-White font-medium py-2 px-4">Contactar vendedor</p>
+                        </button>
+                        <span className="px-4 py-2">{Icons.social.whatsAppFull}</span>
+                    </div>
                 </div>
             </div>
         </div>
