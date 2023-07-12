@@ -37,6 +37,7 @@ module.exports = {
                 Gainsboro: '#E8E8E8',
                 Coral: '#FB923C',
                 DimGray: '#4B5563',
+                Neutral: '#f5f5f5',
             },
 
             boxShadow: {
