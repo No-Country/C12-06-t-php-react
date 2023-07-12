@@ -6,12 +6,12 @@ import { Tag } from './Tag';
 export const CarDetails = () => {
     return (
         <div className="flex flex-col">
-            <div className="flex gap-16">
-                <div className="carimg flex flex-col w-1/2">
+            <div className="flex gap-16 md:flex-row flex-col">
+                <div className="carimg flex flex-col md:w-1/2">
                     <img src="https://picsum.photos/500" className="rounded-3xl aspect-[6/4] object-cover" />
                     <ImageSlider />
                 </div>
-                <div className="flex flex-col gap-4 w-1/2 items-start">
+                <div className="flex flex-col gap-4 md:w-1/2 items-start">
                     <Tag />
                     <div className="flex flex-col gap-2">
                         <span className="font-extrabold text-[40px]">$ 12.000.000</span>

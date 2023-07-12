@@ -9,12 +9,12 @@ export const ImageSlider = () => {
             modules={[FreeMode, Navigation]}
             freeMode={true}
             spaceBetween={16}
-            className="car-images py-7 px-6 w-full">
+            className="car-images my-7 md:mx-6 mx-1 ">
             {Array(8)
                 .fill(0)
                 .map((item) => (
                     <SwiperSlide>
-                        <img className="w-28 h-24 rounded-lg" src="https://picsum.photos/100" />
+                        <img className="w-28 aspect-[8/7] rounded-lg" src="https://picsum.photos/100" />
                     </SwiperSlide>
                 ))}
         </Swiper>
