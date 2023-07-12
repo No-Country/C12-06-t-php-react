@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,4 @@ Route::get('/test', [Controller::class, 'testDb']);
 // @TODO add more - Ver si los hacemos como resources o los hacemos individualmente
 Route::apiResource('bookings', BookingController::class);
 Route::apiResource('cities', CityController::class);
+Route::apiResource('users', UserController::class);
