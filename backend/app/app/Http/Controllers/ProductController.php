@@ -7,9 +7,60 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $filter_options = [
+            // @TODO add year and price if is necessary
+            // 'year',
+            'brand',
+            // 'price',
+            'is_offer',
+            'is_trend',
+            'condition',
+            'city',
+            'country',
+            'calification'
+        ];
+
+        $cols_to_get = [
+            'products.id',
+            'products.name',
+            'products.description',
+            'products.year',
+            'products.brand',
+            'products.price',
+            'products.is_offer',
+            'products.is_trend',
+            'products.condition',
+            'products.calification',
+            'c.name as city',
+            'c.country as country',
+            'products.created_at',
+            'products.updated_at',
+        ];
+
+        $products = Product::join('cities as c', 'products.city_id', 'c.id');
+
+        foreach ($filter_options as $filter) {
+            $filter_value = $request->query($filter);
+
+            if ($filter_value) {
+                if ($filter === 'city') {
+                    $products = $products->where('c.name', $filter_value);
+                    continue;
+                }
+
+                if ($filter === 'country') {
+                    $products = $products->where('c.country', $filter_value);
+                    continue;
+                }
+
+                $products = $products->where($filter, $filter_value);
+            }
+        }
+
+        $products = $products->get($cols_to_get);
+
         return response()->json($products);
     }
 
