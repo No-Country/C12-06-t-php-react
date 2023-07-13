@@ -23,7 +23,6 @@
     "DB_PORT": "3306",
     "DB_DATABASE": "auto-app-db",
     "DB_USERNAME": "jsidlhnc4rnjeztti7s7",
-    "DB_PASSWORD": "pscale_pw_3d0fo1TU0ZqquYiztmvVaRwBW3VEAGVde7UvmQOzP4p",
-    "MYSQL_ATTR_SSL_CA": "/etc/ssl/certs/ca-certificates.crt"
+    "DB_PASSWORD": "pscale_pw_3d0fo1TU0ZqquYiztmvVaRwBW3VEAGVde7UvmQOzP4p"
   }
 }
