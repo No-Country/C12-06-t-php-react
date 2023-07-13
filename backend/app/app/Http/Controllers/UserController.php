@@ -21,43 +21,30 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|email|unique:users',
-            'role' => 'required|in:1,2,3,4',
-            'document' => 'required|integer|min:10000000|max:99999999',
-        ]);
+        // Validación y creación del usuario
 
-        $user = User::create($request->all());
-        return response()->json($user, 201);
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'role' => 'required|in:1,2,3,4',
-            'document' => 'required|integer|min:10000000|max:99999999',
-        ]);
+        // Validación y actualización del usuario
 
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return response()->json($user);
     }
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return response()->json(null, 204);
+        // Eliminación del usuario
+
+    }
+
+    public function getCurrentUser()
+    {
+        $user = auth()->user();
+        return response()->json($user);
     }
 
     public function __construct()
     {
-    $this->middleware('access')->only(['show', 'update']);
+        $this->middleware('auth:sanctum')->except(['store', 'login', 'register']);
     }
-
 }

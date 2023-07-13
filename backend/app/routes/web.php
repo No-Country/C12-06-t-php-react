@@ -19,3 +19,6 @@ Route::get('/', function () {
 
 Route::get('/contact', 'ContactController@index');
 Route::post('/contact/enviar', 'ContactController@enviar');
+Route::post('/login', 'AuthController@login');
+Route::post('/register', 'AuthController@register');
+
