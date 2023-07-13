@@ -14,7 +14,7 @@
     }
   ],
   "env": {
-    "APP_ENV": "production",
+    "APP_ENV": "local",
     "APP_DEBUG": "true",
     "APP_KEY": "base64:H5dVtrugEsHd+BM9eQEjGLJI579Ns0ZGDUuhhQ7yHiw=",
     "APP_URL": "https://backend-auto-app.vercel.app/",
