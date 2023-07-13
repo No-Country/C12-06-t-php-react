@@ -23,7 +23,7 @@ class CarouselController extends Controller
      */
     public function store(Request $request)
     {
-        $imageName = sprintf("%s%s.png", date('Y'), date('m'), date('h:i:s'), md5(uniqid()), $request->file('image')->getClientOriginalExtension());
+        $imageName = sprintf("%s%s-%s.png", date('Y'), date('m'), date('his'), md5(uniqid()), $request->file('image')->getClientOriginalExtension());
 
         Storage::disk('public')->put($imageName, $request->file('image')->get());
 
