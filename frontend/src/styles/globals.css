@@ -37,8 +37,8 @@ body {
     margin: 0; /* Elimina el margen por defecto en Chrome */
 }
 
-.swiper-button-next,
-.swiper-button-prev {
+.home-swiper .swiper-button-next,
+.home-swiper .swiper-button-prev {
     color: #fff;
     background: #fb923c;
     font-size: 1rem;
@@ -47,8 +47,37 @@ body {
     border-radius: 100%;
 }
 
-.swiper-button-next::after,
-.swiper-button-prev::after {
+.home-swiper .swiper-button-next::after,
+.home-swiper .swiper-button-prev::after {
     font-size: 1rem;
     font-weight: bold;
+}
+
+.car-images .swiper-button-next,
+.car-images .swiper-button-prev {
+    color: #c4c4c4;
+    background: #f4f4f4;
+    font-size: 1rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+}
+
+.car-images .swiper-button-next::after,
+.car-images .swiper-button-prev::after {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+@media (max-width: 640px) {
+    .car-images .swiper-button-next,
+    .car-images .swiper-button-prev {
+        width: 1.5rem;
+        height: 1.5rem;
+        top: 35px;
+    }
+    .car-images .swiper-button-next::after,
+    .car-images .swiper-button-prev::after {
+        font-size: 0.5rem;
+    }
 }

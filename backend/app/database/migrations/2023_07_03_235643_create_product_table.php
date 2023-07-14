@@ -18,11 +18,11 @@ class CreateProductTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('year');
-            $table->integer('brand');
+            $table->string('brand');
             $table->float('price');
             $table->boolean('is_offer')->default(false);
             $table->boolean('is_trend')->default(false);
-            $table->string('condition');
+            $table->integer('condition');
             $table->unsignedBigInteger('city_id');
             $table->integer('calification')->nullable();
             $table->timestamps();
