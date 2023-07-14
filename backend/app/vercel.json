@@ -1,7 +1,7 @@
 {
   "version": 2,
   "functions": {
-    "api/index.php": { "runtime": "vercel-php@0.5.3" }
+    "serverless/index.php": { "runtime": "vercel-php@0.5.3" }
   },
   "routes": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/api/index.php"
+      "dest": "/serverless/index.php"
     }
   ],
   "env": {
