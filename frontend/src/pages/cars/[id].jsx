@@ -5,14 +5,20 @@ import Footer from '@/components/shared/footer/Footer';
 import { useProductById } from '@/hooks/useProductById';
 
 export default function CarDetail() {
-    const { data } = useProductById();
+    const { data, loading } = useProductById();
     return (
         <>
             <NavBar />
-            <div className="px-[10%] py-16">
-                <CarDetails data={data} />
-            </div>
-            <RelatedCars brand={data.brand} />
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <>
+                    <div className="px-[10%] py-16">
+                        <CarDetails data={data} />
+                    </div>
+                    <RelatedCars brand={data.brand} id={data.id} />
+                </>
+            )}
             <Footer />
         </>
     );

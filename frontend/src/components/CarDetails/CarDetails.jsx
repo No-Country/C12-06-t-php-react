@@ -15,7 +15,7 @@ export const CarDetails = ({ data }) => {
                     {data.is_offer && <OfferTag />}
                     <div className="flex flex-col gap-2">
                         <span className="font-extrabold text-[40px]">$ {data.price}</span>
-                        <span className="text-OrangeRed font-bold text-sm">{}</span>
+                        <span className="text-OrangeRed font-bold text-sm">{data.city}</span>
                     </div>
                     <h1 className="font-semibold text-3xl">{data.name}</h1>
                     <span className="text-OrangeRed font-bold text-sm">

@@ -12,8 +12,8 @@ export const ImageSlider = () => {
             className="car-images my-7 md:mx-6 mx-1 ">
             {Array(8)
                 .fill(0)
-                .map((item) => (
-                    <SwiperSlide>
+                .map((item, index) => (
+                    <SwiperSlide key={index}>
                         <img className="w-28 aspect-[8/7] rounded-lg" src="https://picsum.photos/100" />
                     </SwiperSlide>
                 ))}
