@@ -1,4 +1,4 @@
-const baseUrl = 'https://backend-auto-app.vercel.app/api/api';
+const baseUrl = process.env.API_URL;
 
 export const productsAPI = `${baseUrl}/products`;
 

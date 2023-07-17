@@ -3,10 +3,7 @@ import 'swiper/css';
 import { FreeMode, Navigation } from 'swiper/modules';
 import { Card } from './Card';
 
-import { useCardSliderProducts } from '@/hooks/useCardSliderProducts';
-
-export const CardSlider = ({ type }) => {
-    const { data, loading } = useCardSliderProducts(type);
+export const CardSlider = ({ data, type }) => {
     const text = {
         tendencies: {
             title: 'Tendencias',
@@ -30,12 +27,11 @@ export const CardSlider = ({ type }) => {
                 freeMode={true}
                 spaceBetween={20}
                 modules={[FreeMode, Navigation]}>
-                {!loading &&
-                    data?.map((item) => (
-                        <SwiperSlide key={item.id} style={{ flexShrink: '1' }}>
-                            <Card data={item} />
-                        </SwiperSlide>
-                    ))}
+                {data.map((item) => (
+                    <SwiperSlide key={item.id} style={{ flexShrink: '1' }}>
+                        <Card data={item} />
+                    </SwiperSlide>
+                ))}
             </Swiper>
         </div>
     );
