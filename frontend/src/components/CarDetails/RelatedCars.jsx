@@ -1,8 +1,8 @@
-import { useProductsByBrand } from '@/hooks/useProductsByBrand';
+import { useRelatedProducts } from '@/hooks/useRelatedProducts';
 import { Card } from '../Card';
 
 export const RelatedCars = ({ brand, id }) => {
-    const { data } = useProductsByBrand(brand, id);
+    const { data } = useRelatedProducts(brand, id);
 
     return (
         <div className="flex flex-col items-center bg-Neutral pt-9 pb-20 gap-8">

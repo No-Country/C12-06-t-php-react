@@ -1,7 +1,7 @@
 import { getProductsByBrand } from '@/services/getProductsByBrand';
 import { useEffect, useState } from 'react';
 
-export const useProductsByBrand = (brand, id) => {
+export const useRelatedProducts = (brand, id) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [data, setData] = useState([]);
