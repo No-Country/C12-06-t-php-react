@@ -1,3 +1,4 @@
+
 import { Inter } from 'next/font/google';
 import { Testimonials } from '@/components/Testimonials';
 import { CardSlider } from '@/components/CardSlider';
@@ -7,6 +8,8 @@ import Carrousel from '@/components/carrousel/Carrousel';
 import NavBar from '@/components/NavBar/NavBar';
 import { getOffers } from '@/services/getOffers';
 import { getTrending } from '@/services/getTrending';
+
+
 
 const inter = Inter({ subsets: ['latin'] });
 const image1 = '/carrousel/carrousel1.svg';
@@ -26,6 +29,7 @@ export default function Home({ offers, tendencies }) {
             <Footer />
         </>
     );
+
 }
 
 export const getServerSideProps = async () => {
