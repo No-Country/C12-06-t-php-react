@@ -16,15 +16,15 @@ const NavBar = () => {
                 <img src="/logo.svg" />
                 <select className=" cursor-pointer" size="1">
                     <option selected>Catálogo de autos</option>
-                    <option>opcion 1</option>
-                    <option>opcion 2</option>
-                    <option>opcion 3</option>
+                    <option value="">opcion 1</option>
+                    <option value="">opcion 2</option>
+                    <option value="">opcion 3</option>
                 </select>
                 <select className=" cursor-pointer" size="1">
                     <option selected>Puntos de venta</option>
-                    <option>opcion 1</option>
-                    <option>opcion 2</option>
-                    <option>opcion 3</option>
+                    <option value="">opcion 1</option>
+                    <option value="">opcion 2</option>
+                    <option value="">opcion 3</option>
                 </select>
                 <li className="">Vender mi auto</li>
                 <li className="">Financiacion</li>
