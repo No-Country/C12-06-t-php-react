@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout'
 import React from 'react'
 
-const PageFiltro = () => {
+const PageFiltro = ({}) => {
   return (
     <Layout>
       
