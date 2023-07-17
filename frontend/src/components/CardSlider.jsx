@@ -27,7 +27,7 @@ export const CardSlider = ({ data, type }) => {
                 freeMode={true}
                 spaceBetween={20}
                 modules={[FreeMode, Navigation]}>
-                {data.map((item) => (
+                {data?.map((item) => (
                     <SwiperSlide key={item.id} style={{ flexShrink: '1' }}>
                         <Card data={item} />
                     </SwiperSlide>
