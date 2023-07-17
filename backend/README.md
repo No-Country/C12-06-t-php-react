@@ -33,5 +33,54 @@ Acceder a la base de datos
 Ejecutar un script custom de php
 
 `lando php folder/folder2/test.php`
+
 -----------------------------------------------------
 Podes ver todos los demás comandos ejecutando `lando`
+
+# Endpoints:
+
+Las rutas tienen la misma estructura la mayoría:
+
+## Bookings
+
+#### GET
+Obtener todas las reservas
+
+`api/bookings`
+
+#### GET
+Obtener una reserva individual
+
+`api/bookings/{booking-id}`
+
+#### POST
+Agregar una reserva
+
+`api/bookings`
+
+body:
+```json
+{
+    "product_id": "12"    // "required|integer",
+    "client_id": "32"     // "required|integer",
+    "state": "1"         // "required|in:1,2,3", 1. New, 2. Pending, 3. Accepted
+}
+```
+#### PUT/PATCH
+Actualizar una reserva individual
+
+`api/bookings/{booking-id}`
+
+body:
+```json
+{
+    "product_id": "12"    // "required|integer",
+    "client_id": "32"     // "required|integer",
+    "state": "1"         // "required|in:1,2,3", 1. New, 2. Pending, 3. Accepted
+}
+```
+
+#### DELETE
+Borrar una reserva
+
+`api/bookings/{booking-id}`
