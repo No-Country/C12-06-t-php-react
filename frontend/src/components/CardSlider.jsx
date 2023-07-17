@@ -3,7 +3,7 @@ import 'swiper/css';
 import { FreeMode, Navigation } from 'swiper/modules';
 import { Card } from './Card';
 
-export const CardSlider = ({ type }) => {
+export const CardSlider = ({ data, type }) => {
     const text = {
         tendencies: {
             title: 'Tendencias',
@@ -14,18 +14,6 @@ export const CardSlider = ({ type }) => {
             p: ' Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi praesentium et, nesciunt unde ipsum quaerat.',
         },
     };
-
-    const cards = [
-        { id: 1, city: 'Buenos Aires', price: '12.000.000', seller: 'Juan Vendedor', createdAt: 'Mar 26, 2023', is_offer: true },
-        { id: 2, city: 'La Plata', price: '12.000.000', seller: 'Federico Vendedor', createdAt: 'Mar 16, 2023', is_offer: false },
-        { id: 3, city: 'Misiones', price: '12.000.000', seller: 'Melisa Vendedora', createdAt: 'Mar 30, 2023', is_offer: false },
-        { id: 4, city: 'Misiones', price: '12.000.000', seller: 'Melisa Vendedora', createdAt: 'Mar 30, 2023', is_offer: false },
-        { id: 5, city: 'Misiones', price: '12.000.000', seller: 'Melisa Vendedora', createdAt: 'Mar 30, 2023', is_offer: false },
-        { id: 6, city: 'Misiones', price: '12.000.000', seller: 'Melisa Vendedora', createdAt: 'Mar 30, 2023', is_offer: false },
-    ];
-
-    // Si offers traer ofertas
-    // Si tendencies traer tendencias
 
     return (
         <div className="flex flex-col gap-4 p-4 md:p-5">
@@ -39,7 +27,7 @@ export const CardSlider = ({ type }) => {
                 freeMode={true}
                 spaceBetween={20}
                 modules={[FreeMode, Navigation]}>
-                {cards.map((item) => (
+                {data.map((item) => (
                     <SwiperSlide key={item.id} style={{ flexShrink: '1' }}>
                         <Card data={item} />
                     </SwiperSlide>

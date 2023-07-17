@@ -7,6 +7,23 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    protected $cols_to_get = [
+        'products.id',
+        'products.name',
+        'products.description',
+        'products.year',
+        'products.brand',
+        'products.price',
+        'products.is_offer',
+        'products.is_trend',
+        'products.condition',
+        'products.calification',
+        'c.name as city',
+        'c.country as country',
+        'products.created_at',
+        'products.updated_at',
+    ];
+
     public function index(Request $request)
     {
         $filter_options = [
@@ -20,23 +37,6 @@ class ProductController extends Controller
             'city',
             'country',
             'calification'
-        ];
-
-        $cols_to_get = [
-            'products.id',
-            'products.name',
-            'products.description',
-            'products.year',
-            'products.brand',
-            'products.price',
-            'products.is_offer',
-            'products.is_trend',
-            'products.condition',
-            'products.calification',
-            'c.name as city',
-            'c.country as country',
-            'products.created_at',
-            'products.updated_at',
         ];
 
         $products = Product::join('cities as c', 'products.city_id', 'c.id');
@@ -59,15 +59,29 @@ class ProductController extends Controller
             }
         }
 
-        $products = $products->get($cols_to_get);
+        $products = $products->get($this->cols_to_get);
 
         return response()->json($products);
     }
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-        return response()->json($product);
+        $product = Product::join('cities as c', 'products.city_id', 'c.id')
+            ->where('products.id', $id)
+            ->first($this->cols_to_get);
+
+        if (!$product) {
+            return [
+                "message" => "Product doesn't exists",
+                "success" => false,
+                "data" => []
+             ];
+        }
+
+        return [
+            "success" => true,
+            "data" => $product
+         ];
     }
 
     public function store(Request $request)
