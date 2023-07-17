@@ -1,12 +1,9 @@
-import { useProductById } from '@/hooks/useProductById';
 import { Icons } from '../Icons';
 import { SellerInfo } from '../shared/SellerInfo';
 import { ImageSlider } from './ImageSlider';
 import { OfferTag } from './OfferTag';
 
-export const CarDetails = () => {
-    const { data } = useProductById();
-
+export const CarDetails = ({ data }) => {
     return (
         <div className="flex flex-col">
             <div className="flex gap-16 md:flex-row flex-col">
