@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-const Filtered = () => {
+const Filtered = ({setDataFiltered}) => {
   const handleSelect = (e) => {
     console.log(e);
+    setDataFiltered(e)
   };
 
   return (
@@ -28,7 +29,7 @@ const Filtered = () => {
             onChange={(e) => handleSelect(e.target.value)}
             className="w-[150px] py-2 px-2 outline-none border border-LightGray rounded-md"
           >
-            <option disable value="">
+            <option disable="true" value="">
               Ciudad
             </option>
             <option value="buenos_aires">Buenos Aires</option>
@@ -43,7 +44,7 @@ const Filtered = () => {
             onChange={(e) => handleSelect(e.target.value)}
             className="w-[150px] py-2 px-2 outline-none border border-LightGray rounded-md"
           >
-            <option disable value="">
+            <option disable="true" value="">
               Tipos
             </option>
             <option value="usados">Usados</option>
@@ -58,12 +59,13 @@ const Filtered = () => {
             onChange={(e) => handleSelect(e.target.value)}
             className="w-[150px] py-2 px-2 outline-none border border-LightGray rounded-md"
           >
-            <option disable value="">
+            <option disable="true" value="">
               Marcas
             </option>
             <option value="volvo">Volvo</option>
             <option value="tesla">Tesla</option>
             <option value="ford">Ford</option>
+            <option value="hyundai">Hyundai</option>
           </select>
         </label>
       </div>

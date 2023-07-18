@@ -1,28 +1,21 @@
-import Filtered from "@/components/Filterss/Filtered";
-import Layout from "@/components/Layout";
-import ContentContact from "@/components/contact/ContentContact";
+import Layout from "@/components/Catalogue/Layout";
 import React from "react";
 
-const index = () => {
+const Catalogo = ({ products }) => {
   return (
-    <Layout page="Catálogo">
-      <header className="w-full flex flex-col items-center justify-center text-center gap-4 px-2 md:px-8">
-        <h2 className="font-extrabold ">
-          Anim aute id magna aliqua{" "}
-          <span className="text-OrangeRed">ad ad non sunt.</span>
-        </h2>
-        <p className="text-DarkGray sm:max-w-[70%] md:max-w-[50%]">
-          Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem
-          cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat
-          aliqua.{" "}
-        </p>
-
-        <Filtered />
-      </header>
-      <section className="w-full flex flex-col items-center justify-center my-8"></section>
-      <ContentContact />
-    </Layout>
+    <Layout
+      textBlack="Anim aute id magna aliqua"
+      textOrangeRed="ad ad non sunt."
+      data={products}
+      page="Catálogo"
+    ></Layout>
   );
 };
 
-export default index;
+export default Catalogo;
+
+export const getServerSideProps = async () => {
+  const getProducts = await fetch(`${process.env.API_URL}/products`);
+  const products = await getProducts.json();
+  return { props: { products } };
+};

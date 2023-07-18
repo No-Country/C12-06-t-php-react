@@ -5,7 +5,6 @@ import { formatDate } from '@/utils/formatDate';
 
 export const Card = ({ data }) => {
     const { city, created_at, price, is_offer } = data;
-
     return (
         <Link href={`/cars/${data.id}`}>
             <div className="w-[330px] md:w-[390px] h-[351px] shadow-lg rounded-lg overflow-hidden relative">
