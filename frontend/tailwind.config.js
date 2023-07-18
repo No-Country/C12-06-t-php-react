@@ -54,7 +54,6 @@ module.exports = {
                 '4xl': '2.25rem',
             },
         },
-        colors: {},
     },
     plugins: [],
 };
