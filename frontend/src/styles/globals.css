@@ -3,81 +3,85 @@
 @tailwind utilities;
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #fff;
-    font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  font-family: "Inter", sans-serif;
 }
 
 #__next {
-    width: 100%;
-    min-height: 100vh;
-    padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
 }
 
 .containerPage {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .colorPlace::placeholder {
-    color: #6b7280;
+  color: #6b7280;
 }
 
-.inputNumber input[type='number'] {
-    -moz-appearance: textfield; /* Firefox */
+.inputNumber input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 
-.inputNumber input[type='number']::-webkit-inner-spin-button,
-.inputNumber input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0; /* Elimina el margen por defecto en Chrome */
+.inputNumber input[type="number"]::-webkit-inner-spin-button,
+.inputNumber input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Elimina el margen por defecto en Chrome */
+}
+
+.home-swiper {
+  width: 100%;
 }
 
 .home-swiper .swiper-button-next,
 .home-swiper .swiper-button-prev {
-    color: #fff;
-    background: #fb923c;
-    font-size: 1rem;
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: 100%;
+  color: #fff;
+  background: #fb923c;
+  font-size: 1rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 100%;
 }
 
 .home-swiper .swiper-button-next::after,
 .home-swiper .swiper-button-prev::after {
-    font-size: 1rem;
-    font-weight: bold;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .car-images .swiper-button-next,
 .car-images .swiper-button-prev {
-    color: #c4c4c4;
-    background: #f4f4f4;
-    font-size: 1rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 100%;
+  color: #c4c4c4;
+  background: #f4f4f4;
+  font-size: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 100%;
 }
 
 .car-images .swiper-button-next::after,
 .car-images .swiper-button-prev::after {
-    font-size: 0.8rem;
-    font-weight: bold;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 @media (max-width: 640px) {
-    .car-images .swiper-button-next,
-    .car-images .swiper-button-prev {
-        width: 1.5rem;
-        height: 1.5rem;
-        top: 35px;
-    }
-    .car-images .swiper-button-next::after,
-    .car-images .swiper-button-prev::after {
-        font-size: 0.5rem;
-    }
+  .car-images .swiper-button-next,
+  .car-images .swiper-button-prev {
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 35px;
+  }
+  .car-images .swiper-button-next::after,
+  .car-images .swiper-button-prev::after {
+    font-size: 0.5rem;
+  }
 }

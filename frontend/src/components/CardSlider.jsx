@@ -16,7 +16,7 @@ export const CardSlider = ({ data, type }) => {
     };
 
     return (
-        <div className="flex flex-col gap-4 p-4 md:p-5">
+        <div className="w-full flex flex-col gap-4 p-4 md:p-5">
             <h3 className="font-extrabold text-4xl">{text[type].title}</h3>
             <p className="text-SlateGray text-xl">{text[type].p}</p>
 
