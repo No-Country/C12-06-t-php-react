@@ -84,3 +84,5 @@ body:
 Borrar una reserva
 
 `api/bookings/{booking-id}`
+
+Agregamos un texto de prueba :p
