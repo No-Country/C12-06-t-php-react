@@ -8,9 +8,9 @@ export default function Funding() {
     return (
         <Layout page={'Financiación'}>
             <Header />
-            <main className="px-[10%] py-24">
+            <section className="px-[10%] py-24">
                 <Transactions />
-            </main>
+            </section>
             <WorkWithUs />
             <Faq />
         </Layout>
