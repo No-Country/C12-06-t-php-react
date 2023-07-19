@@ -4,7 +4,7 @@ export const Story = () => {
             <h2 className="text-OrangeRed uppercase font-semibold">Historia</h2>
             <div className="flex flex-col gap-8">
                 <h3 className="font-bold text-4xl">Como comienza nuestro camino</h3>
-                <div className="flex text-SlateGray text-lg gap-6">
+                <div className="flex text-SlateGray text-lg gap-6 sm:flex-row flex-col">
                     <div className="flex flex-col gap-6">
                         <p>
                             Ultrices ultricies a in odio consequat egestas rutrum. Ut vitae aliquam in ipsum. Duis nullam placerat
@@ -40,7 +40,7 @@ export const Story = () => {
                         </p>
                     </div>
                 </div>
-            </div>{' '}
+            </div>
         </section>
     );
 };
