@@ -22,11 +22,32 @@ class ProductFactory extends Factory {
             'name' => $this->faker->words(2, true),
             'description' => $this->faker->paragraph(2, false),
             'year' => $this->faker->numberBetween(1960, 2020),
-            'brand' => $this->faker->randomElement([1, 2, 3, 4, 5, 6]), //'Toyota', 'Susuki', 'BMW', 'Ford', 'Honda','Yamaha'
+            'brand' => $this->faker->randomElement([
+                "Chevrolet",
+                "Ford",
+                "Volkswagen",
+                "Renault",
+                "Fiat",
+                "Peugeot",
+                "Toyota",
+                "Honda",
+                "Yamaha",
+                "Suzuki",
+                "Mercedes-Benz",
+                "BMW",
+                "Audi",
+                "Nissan",
+                "Citroën",
+                "Kawasaki",
+                "Hyundai",
+                "Kia",
+                "Harley-Davidson",
+                "Ducati"
+            ]),
             'price' => $this->faker->randomFloat(1, 10000, 40000),
             'is_offer' => $this->faker->boolean(),
             'is_trend' => $this->faker->boolean(),
-            'condition' => $this->faker->randomElement(['nuevo', 'usado']),
+            'condition' => $this->faker->randomElement([Product::STATUS_NEW, Product::STATUS_USED]), // 1. New, 2. Used
             'city_id' => $this->faker->numberBetween(1, 10),
             'calification' => $this->faker->numberBetween(1, 5)
         ];

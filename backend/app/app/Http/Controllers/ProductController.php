@@ -7,16 +7,81 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    protected $cols_to_get = [
+        'products.id',
+        'products.name',
+        'products.description',
+        'products.year',
+        'products.brand',
+        'products.price',
+        'products.is_offer',
+        'products.is_trend',
+        'products.condition',
+        'products.calification',
+        'c.name as city',
+        'c.country as country',
+        'products.created_at',
+        'products.updated_at',
+    ];
+
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $filter_options = [
+            // @TODO add year and price if is necessary
+            // 'year',
+            'brand',
+            // 'price',
+            'is_offer',
+            'is_trend',
+            'condition',
+            'city',
+            'country',
+            'calification'
+        ];
+
+        $products = Product::join('cities as c', 'products.city_id', 'c.id');
+
+        foreach ($filter_options as $filter) {
+            $filter_value = $request->query($filter);
+
+            if ($filter_value) {
+                if ($filter === 'city') {
+                    $products = $products->where('c.name', $filter_value);
+                    continue;
+                }
+
+                if ($filter === 'country') {
+                    $products = $products->where('c.country', $filter_value);
+                    continue;
+                }
+
+                $products = $products->where($filter, $filter_value);
+            }
+        }
+
+        $products = $products->get($this->cols_to_get);
+
         return response()->json($products);
     }
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
-        return response()->json($product);
+        $product = Product::join('cities as c', 'products.city_id', 'c.id')
+            ->where('products.id', $id)
+            ->first($this->cols_to_get);
+
+        if (!$product) {
+            return [
+                "message" => "Product doesn't exists",
+                "success" => false,
+                "data" => []
+             ];
+        }
+
+        return [
+            "success" => true,
+            "data" => $product
+         ];
     }
 
     public function store(Request $request)

@@ -19,8 +19,8 @@ class CityFactory extends Factory {
 
     public function definition(): array {
         return [
-            'city_name' => $this->faker->city(),
-            'country_name' => $this->faker->country(),
+            'name' => $this->faker->city(),
+            'country' => $this->faker->country(),
             'post_code' => $this->faker->postcode()
         ];
     }
