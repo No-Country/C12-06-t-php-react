@@ -1,3 +1,5 @@
+import { GrayParagraph } from '../GrayParagraph';
+
 export const Header = () => {
     return (
         <div className="flex items-start overflow-hidden md:h-[65vh] md:flex-row flex-col">
@@ -6,10 +8,10 @@ export const Header = () => {
                     <h1 className="font-extrabold tracking-tight leading-none lg:text-6xl text-4xl">
                         Conoce nuestros planes de <span className="text-OrangeRed">financiación</span>
                     </h1>
-                    <p className="text-SlateGray md:text-xl text-lg">
+                    <GrayParagraph>
                         Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
                         fugiat veniam occaecat fugiat aliqua.
-                    </p>
+                    </GrayParagraph>
                     <div className="flex gap-3 font-medium text-lg">
                         <button className="bg-OrangeRed text-White shadow-sm px-10 py-4 rounded-md">Get started</button>
                         <button className="text-OrangeRed shadow-sm px-10 py-4 rounded-md bg-White">Live demo</button>
