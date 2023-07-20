@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import NavBar from "./NavBar/NavBar";
 import Footer from "./shared/footer/Footer";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,10 +27,18 @@ export default function Layout({ children, page }) {
         />
       </Head>
       <NavBar />
-      <main
-        className={`flex min-h-screen flex-col items-center justify-between ${inter.className}`}
-      >
+      <main className={`w-full min-h-screen flex flex-col ${inter.className}`}>
         {children}
+        <button className="flex items-center justify-center gap-2 fixed bottom-8 right-8 py-2 px-4 z-10 rounded-[50px] bg-LimeGreen text-White font-bold">
+          <Image
+            width={20}
+            height={10}
+            src="/icons/wsp.svg"
+            alt="icono whatsapp"
+            className=""
+          />
+          Recibir asesoría
+        </button>
       </main>
       <Footer />
     </>
