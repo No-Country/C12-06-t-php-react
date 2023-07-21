@@ -20,6 +20,7 @@ export default function Home() {
                 <CardSlider type="tendencies" />
                 <Testimonials />
             </main>
+        
             <Content />
             <Footer />
         </>

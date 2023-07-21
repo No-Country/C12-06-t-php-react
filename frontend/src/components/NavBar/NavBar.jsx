@@ -1,9 +1,16 @@
 import React from "react";
 import ButtomPrimary from "../Botones/ButtomPrimary";
 import { useMedia } from "@/hooks/useMedia";
+import { useRouter } from "next/router";
 
 const NavBar = () => {
     const media = useMedia()
+    const router = useRouter()
+
+    const handleClick =(e)=>{
+        e.preventDefault()
+        router.push('/')
+    }
     return (
         <div className="flex justify-between  py-[20px]">
             <ul className={`flex justify-around text-[#6B7280] items-center cursor-pointer w-[100%] pl-[20px] pr-[20px]
@@ -13,7 +20,7 @@ const NavBar = () => {
                 : ''
             }
             `}>
-                <img src="/logo.svg" />
+                <img src="/logo.svg" onClick={handleClick}/>
                 <select className=" cursor-pointer" size="1">
                     <option selected>Catálogo de autos</option>
                     <option>opcion 1</option>
