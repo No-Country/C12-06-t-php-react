@@ -73,6 +73,24 @@ body {
   font-weight: bold;
 }
 
+.mapboxgl-map {
+  min-width: 600px;
+  min-height: 600px !important;
+  border-radius: 20px;
+}
+
+.mapboxgl-ctrl-attrib-inner {
+  display: none;
+}
+
+.mapboxgl-marker svg path[fill="#3FB1CE"] {
+  fill: #ea580c;
+}
+
+.scrollVisible::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
 @media (max-width: 640px) {
   .car-images .swiper-button-next,
   .car-images .swiper-button-prev {
