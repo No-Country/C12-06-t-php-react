@@ -73,6 +73,10 @@ body {
   font-weight: bold;
 }
 
+.scrollVisible::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
 @media (max-width: 640px) {
   .car-images .swiper-button-next,
   .car-images .swiper-button-prev {
