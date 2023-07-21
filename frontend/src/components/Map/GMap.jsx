@@ -1,31 +1,59 @@
-import React from "react";
-import GoogleMapReact from 'google-map-react';
+import React, { useEffect, useRef } from "react";
+import mapboxgl from "mapbox-gl";
+import { v4 } from "uuid";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+mapboxgl.accessToken =
+  "pk.eyJ1IjoiemV2YWd1aWxsbyIsImEiOiJjbDZ3b2p0N3ExNWNuM25wNXZudnducm9mIn0.x85rW5VZ8z0q3U5-mO3NVA";
 
-export default function GMap(){
-  const defaultProps = {
-    center: {
-      lat: 10.99835602,
-      lng: 77.01502627
-    },
-    zoom: 11
-  };
+const defaultCenter = {
+  lat: -34.61315,
+  lng: -58.37723,
+  zoom: 8,
+};
+
+// const defaultMarker = [
+//   {
+//     lat: 10.99835602,
+//     lng: 77.01502627,
+//   }
+// ]
+
+export default function GMap({ center = defaultCenter, markersList, className="" }) {
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const markers = useRef({});
+  const elemRef = React.useRef(null);
+
+  useEffect(() => {
+    if (map.current) return;
+
+    // set mapbox
+    map.current = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: "mapbox://styles/mapbox/streets-v12",
+      center: [defaultCenter.lng, defaultCenter.lat],
+      zoom: defaultCenter.zoom,
+    });
+
+    if (markersList.length > 0) {
+      markersList.forEach(markerItem => {
+        const { lng, lat } = markerItem;
+
+        const marker = new mapboxgl.Marker();
+
+        marker.id = v4();
+
+        marker.setLngLat([lng, lat]).addTo(map.current);
+
+        markers.current[marker.id] = marker;
+      });
+    }
+  },[]);
 
   return (
-    // Important! Always set the container height explicitly
-    <div style={{ height: '300px', width: 'min(100%, 900px)' }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyCvnYmkcoK66Qli9CigAs-YgjzL0pnlVVg" }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
-      >
-        <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-          text="My Marker"
-        />
-      </GoogleMapReact>
+    <div
+      ref={mapContainer}
+      className={"overflow-hidden " + className}>
     </div>
   );
 }

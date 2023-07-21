@@ -21,7 +21,19 @@ const Contacto = () => {
         <ContentContact />
         <article className="w-full flex flex-col items-center justify-center text-center gap-8">
           <h3 className="text-xl font-bold">¿Dónde ubicarnos?</h3>
-            <GMap/>
+          <GMap
+            markersList={[
+              {
+                lat: -34.61315,
+                lng: -58.37723,
+              },
+              {
+                lat: -34.6179111,
+                lng: -59.0278495,
+              },
+            ]}
+            className="contact"
+          />
         </article>
       </section>
     </Layout>
