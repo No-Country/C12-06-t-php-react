@@ -86,6 +86,8 @@ body {
 
 .mapboxgl-marker svg path[fill="#3FB1CE"]{
   fill: #EA580C;
+.scrollVisible::-webkit-scrollbar {
+  -webkit-appearance: none;
 }
 
 @media (max-width: 640px) {
