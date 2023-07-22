@@ -6,25 +6,43 @@ import ContentContact from "../contact/ContentContact";
 import Filtered from "../Filterss/Filtered";
 import { Inter } from "next/font/google";
 import { Card } from "../Card";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const Layout = ({ page, textBlack, textOrangeRed, data }) => {
   const [dataFiltered, setDataFiltered] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
+  const [offerVisible, setOfferVisible] = useState("0");
   const [resFilter, setResFilter] = useState([]);
 
   const dataCatalogue = data.slice(0, 12);
 
   useEffect(() => {
-    const getDataFilter = async (filter) => {
+    const getDataFilter = async (typeF, filter) => {
       const getData = await fetch(
-        `${process.env.API_URL}/products?brand=${filter}`
+        `${process.env.API_URL}/products?${typeF}=${filter}`
       );
       const products = await getData.json();
       setResFilter(products);
     };
-    dataFiltered.length > 0 && getDataFilter(dataFiltered);
+    typeFilter?.length > 0 &&
+      dataFiltered?.length &&
+      getDataFilter(typeFilter, dataFiltered);
   }, [dataFiltered]);
+
+  useEffect(() => {
+    const getDataFilter = async (filter) => {
+      const getData = await fetch(
+        `${process.env.API_URL}/products?$is_offer=${filter}`
+      );
+      const products = await getData.json();
+
+      setResFilter(products);
+
+      getDataFilter(offerVisible);
+    };
+  }, [offerVisible]);
 
   return (
     <>
@@ -58,36 +76,55 @@ const Layout = ({ page, textBlack, textOrangeRed, data }) => {
             lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
             fugiat aliqua.{" "}
           </p>
-          <Filtered setDataFiltered={setDataFiltered} />
+          <Filtered
+            setDataFiltered={setDataFiltered}
+            dataFiltered={dataFiltered}
+            setTypeFilter={setTypeFilter}
+            setOfferVisible={setOfferVisible}
+            offerVisible={offerVisible}
+          />
         </header>
         <section className="w-full flex flex-col items-center justify-center my-8 px-2 md:px-12">
-          {resFilter.length > 0 ? (
-            <>
-              <article className="w-full pb-8 grid grid-cols-1 place-items-center gap-8 overflow-x-hidden sm:grid-cols-2 sm:px-2 lg:grid-cols-3">
-                {resFilter.map((data) => (
+          <>
+            {resFilter.length > 0 ? (
+              <>
+                <article className="w-full min-h-screen pb-8 grid grid-cols-1 place-items-center gap-8 overflow-x-hidden sm:grid-cols-2 sm:px-2 lg:grid-cols-3">
+                  {resFilter.map((data) => (
+                    <Card key={data.id} data={data} />
+                  ))}
+                </article>
+              </>
+            ) : (
+              <article className="w-full min-h-screen pb-8 grid grid-cols-1 place-items-start gap-8 overflow-x-hidden sm:grid-cols-2 sm:px-2 lg:grid-cols-3">
+                {dataCatalogue.map((data) => (
                   <Card key={data.id} data={data} />
                 ))}
               </article>
-            </>
-          ) : (
-            <article className="w-full pb-8 grid grid-cols-1 place-items-center gap-8 overflow-x-hidden sm:grid-cols-2 sm:px-2 lg:grid-cols-3">
-              {dataCatalogue.map((data) => (
-                <Card key={data.id} data={data} />
-              ))}
-            </article>
-          )}
+            )}
+          </>
+
           <article className="w-full flex items-center justify-end">
             <div className="w-auto m-0 border border-DarkGray rounded-md">
-              <button className="px-2 border-r border-DarkGray text-xl font-semibold ">
+              <button className="px-2 border-r border-DarkGray text-xl font-semibold text-DarkGray">
                 &lt;
               </button>
-              <button className="px-2 border-l border-DarkGray text-xl font-semibold ">
+              <button className="px-2 border-l border-DarkGray text-xl font-semibold text-DarkGray">
                 &gt;
               </button>
             </div>
           </article>
         </section>
       </main>
+      <button className="flex items-center justify-center gap-2 fixed bottom-8 right-8 py-2 px-4 z-10 rounded-[50px] bg-LimeGreen text-White font-bold">
+        <Image
+          width={20}
+          height={10}
+          src="/icons/wsp.svg"
+          alt="icono whatsapp"
+          className=""
+        />
+        Recibir asesoría
+      </button>
       <ContentContact />
       <Footer />
     </>

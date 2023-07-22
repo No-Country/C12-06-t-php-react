@@ -1,15 +1,31 @@
 import React from "react";
 import Image from "next/image";
 
-const Filtered = ({setDataFiltered}) => {
+const Filtered = ({
+  setDataFiltered,
+  setTypeFilter,
+  setOfferVisible,
+  offerVisible,
+}) => {
   const handleSelect = (e) => {
-    console.log(e);
-    setDataFiltered(e)
+    setTypeFilter(e.name);
+    setDataFiltered(e.value);
+  };
+
+  const handleOffer = () => {
+    offerVisible == "1" ? setOfferVisible("0") : setOfferVisible("1");
   };
 
   return (
     <article className="w-full flex items-start justify-between flex-wrap gap-4 mt-4">
-      <button className="py-2 px-2 flex items-center justify-center gap-2 border border-OrangeRed text-OrangeRed text-sm rounded-md">
+      <button
+        onClick={handleOffer}
+        className={`${
+          offerVisible == "1"
+            ? "py-2 px-2 flex items-center justify-center gap-2 border bg-LightOrangeRed border-OrangeRed text-OrangeRed text-sm rounded-md"
+            : "py-2 px-2 flex items-center justify-center gap-2 border border-OrangeRed text-OrangeRed text-sm rounded-md"
+        }`}
+      >
         <figure className="w-4">
           <Image
             width={100}
@@ -26,7 +42,7 @@ const Filtered = ({setDataFiltered}) => {
           <select
             name="city"
             id="city"
-            onChange={(e) => handleSelect(e.target.value)}
+            onChange={(e) => handleSelect(e.target)}
             className="w-[150px] py-2 px-2 outline-none border border-LightGray rounded-md"
           >
             <option disable="true" value="">
@@ -34,29 +50,29 @@ const Filtered = ({setDataFiltered}) => {
             </option>
             <option value="buenos_aires">Buenos Aires</option>
             <option value="mar_del_plata">Mar del Plata</option>
-            <option value="ciudad_de_santa_fe">Ciudad de Santa Fe</option>
+            <option value="santa_fe">Ciudad de Santa Fe</option>
+            <option value="andersonton">Andersonton</option>
           </select>
         </label>
-        <label htmlFor="type">
+        <label htmlFor="condition">
           <select
-            name="type"
-            id="type"
-            onChange={(e) => handleSelect(e.target.value)}
+            name="condition"
+            id="condition"
+            onChange={(e) => handleSelect(e.target)}
             className="w-[150px] py-2 px-2 outline-none border border-LightGray rounded-md"
           >
             <option disable="true" value="">
               Tipos
             </option>
-            <option value="usados">Usados</option>
-            <option value="nuevos">Nuevos</option>
-            <option value="a_reparar">A reparar</option>
+            <option value="1">Nuevos</option>
+            <option value="2">Usados</option>
           </select>
         </label>
         <label htmlFor="brand">
           <select
             name="brand"
             id="brand"
-            onChange={(e) => handleSelect(e.target.value)}
+            onChange={(e) => handleSelect(e.target)}
             className="w-[150px] py-2 px-2 outline-none border border-LightGray rounded-md"
           >
             <option disable="true" value="">

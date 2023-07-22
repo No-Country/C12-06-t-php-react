@@ -60,13 +60,13 @@ export const Testimonials = () => {
     <div className="max-w-[1280px] mx-auto">
       <section className="py-16 px-4 md:px-8  text-center">
         <div className="flex justify-center flex-col items-center">
-          <h4>Lo que dicen nuestros clientes</h4>
-          <p>
+          <h4 className="text-OrangeRed font-extrabold text-4xl my-4">Lo que dicen nuestros clientes</h4>
+          <p className="text-SlateGray text-xl">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
             Repellendus repellat laudantium.
           </p>
         </div>
-          <p className="py-8">
+          <p className="py-8 text-DimGray text-base font-semibold uppercase">
             Trusted by over 5 very average small businesses
           </p>
         <ul className="grid grid-cols-2 gap-[2px] md:grid-cols-3 md:px-8">
@@ -75,7 +75,7 @@ export const Testimonials = () => {
           ))}
         </ul>
       </section>
-      <section className="flex flex-col justify-between md:flex-row  gap-[2px] bg-orange-500">
+      <section className="flex flex-col mb-16 justify-between md:flex-row  md:gap-[2px] bg-orange-500">
         <div className=" flex flex-col py-12 px-4 md:px-16 flex-1 gap-8 bg-white" >
             <div className="space-y-6">
             {/* TODO: cahnge logo */}
