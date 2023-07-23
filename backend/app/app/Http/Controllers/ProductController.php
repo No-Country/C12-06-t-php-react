@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -46,7 +47,16 @@ class ProductController extends Controller
 
             if ($filter_value) {
                 if ($filter === 'city') {
-                    $products = $products->where('c.name', $filter_value);
+                    if (Str::contains($filter_value, ['-', '_'])) {
+                        $filter_value = Str::swap([
+                            '-' => ' ',
+                            '_' => ' '
+                        ], $filter_value);
+                    }
+
+                    $filter_value = Str::title($filter_value);
+
+                    $products = $products->where('c.name', Str::ucfirst($filter_value));
                     continue;
                 }
 
@@ -75,13 +85,13 @@ class ProductController extends Controller
                 "message" => "Product doesn't exists",
                 "success" => false,
                 "data" => []
-             ];
+            ];
         }
 
         return [
             "success" => true,
             "data" => $product
-         ];
+        ];
     }
 
     public function store(Request $request)
