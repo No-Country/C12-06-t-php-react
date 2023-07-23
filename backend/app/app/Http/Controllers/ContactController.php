@@ -13,9 +13,9 @@ class ContactController extends Controller
         return view('contact');
     }
 
-    public function enviar(Request $request)
+    public function send(Request $request)
     {
-        // Aquí puedes agregar la lógica para procesar y guardar los datos del formulario de contacto
+        
 
         $data = [
             'name' => $request->input('name'),
@@ -25,6 +25,9 @@ class ContactController extends Controller
 
         Mail::to('destinatario@example.com')->send(new ContactoMailable($data));
 
-        return redirect('/contact')->with('success', '¡El mensaje ha sido enviado!');
+        return response()->json([
+            'success' => true,
+            'message' => '¡El mensaje ha sido enviado!',
+        ]);
     }
-}
+}   
