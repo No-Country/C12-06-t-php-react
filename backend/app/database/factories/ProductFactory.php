@@ -19,7 +19,31 @@ class ProductFactory extends Factory {
 
     public function definition(): array {
         return [
-            'name' => $this->faker->words(2, true),
+            'name' => $this->faker->randomElement([
+                "Creta",
+                "Venue",
+                "Hilux",
+                "Accent",
+                "Elantra",
+                "Rav4",
+                "Avanza",
+                "Corolla",
+                "Agya",
+                "Hilux Srv",
+                "Yaris",
+                "X-Trail",
+                "Etios",
+                "Raize",
+                "4Runner",
+                "Fortuner",
+                "Hilux Sr",
+                "Cruiser",
+                "Land Cruiser",
+                "Kicks",
+                "Palisade",
+                "Rush",
+                "Stinger"
+            ]),
             'description' => $this->faker->paragraph(2, false),
             'year' => $this->faker->numberBetween(1960, 2020),
             'brand' => $this->faker->randomElement([
