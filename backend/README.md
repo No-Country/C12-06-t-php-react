@@ -84,3 +84,47 @@ body:
 Borrar una reserva
 
 `api/bookings/{booking-id}`
+
+---------------------------------------------------------
+
+## Vendors
+
+#### GET
+Obtener todas los vendedores
+
+`api/vendors`
+
+#### GET
+Obtener un vendedor(Este esta relacionado directamente con un usuario) y los productos que esté vendiendo 
+
+`api/vendors/{user-id}`
+
+#### POST
+Agregar un vendedor
+
+`api/vendors`
+
+body:
+```json
+{
+    "user_id": "10"    // "required|integer",
+    "product_id": "20"     // "required|integer",
+}
+```
+#### PUT/PATCH
+Actualizar un vendedor(Aqui si va el id del vendedor)
+
+`api/vendors/{vendor-id}`
+
+body:
+```json
+{
+    "user_id": "10"    // "required|integer",
+    "product_id": "20"     // "required|integer",
+}
+```
+
+#### DELETE
+Borrar un vendedor solo si es de rol admin([1,2])
+
+`api/vendors/{vendors-id}`
