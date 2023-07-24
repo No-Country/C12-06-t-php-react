@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -21,6 +22,11 @@ class ProductController extends Controller
         'products.calification',
         'c.name as city',
         'c.country as country',
+        // 'i.link',
+        'products.image_id',
+        'u.name as vendor_name',
+        'u.lastname as vendor_lastname',
+        'u.email as vendor_email',
         'products.created_at',
         'products.updated_at',
     ];
@@ -40,7 +46,10 @@ class ProductController extends Controller
             'calification'
         ];
 
-        $products = Product::join('cities as c', 'products.city_id', 'c.id');
+        $products = Product::join('cities as c', 'products.city_id', 'c.id')
+            // ->join('images as i', 'products.image_id', 'i.id')
+            ->join('vendors as v', 'products.id', 'v.product_id')
+            ->join('users as u', 'v.user_id', 'u.id');
 
         foreach ($filter_options as $filter) {
             $filter_value = $request->query($filter);
@@ -71,12 +80,21 @@ class ProductController extends Controller
 
         $products = $products->get($this->cols_to_get);
 
+        foreach ($products as $index => $product) {
+            if ($product->image_id) {
+                $image = Image::find($product->image_id);
+
+                $products[$index]['images'] = $image->link;
+            }
+        }
+
         return response()->json($products);
     }
 
     public function show($id)
     {
         $product = Product::join('cities as c', 'products.city_id', 'c.id')
+            ->join('images as i', 'products.image_id', 'i.id')
             ->where('products.id', $id)
             ->first($this->cols_to_get);
 
