@@ -25,6 +25,7 @@ class CreateProductTable extends Migration
             $table->integer('condition');
             $table->unsignedBigInteger('city_id');
             $table->integer('calification')->nullable();
+            $table->integer('image_id')->nullable();
             $table->timestamps();
 
             // Not allowed on PlanetScale
