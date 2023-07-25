@@ -1,68 +1,44 @@
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import React from 'react';
 
 const OurProcess = () => {
-  return (
-    <article className="w-full flex flex-col items-center justify-center gap-4 text-center base:flex-row base:items-start base:mt-16">
-      <figure className="w-full h-[300px] base:h-[500px]">
-        <Image
-          width={100}
-          height={100}
-          src="/sellCar/image-persons.svg"
-          alt="imagen de personas"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
-      </figure>
-      <div className="w-full flex flex-col px-2">
-        <header className="w-full flex flex-col items-start gap-1 mb-4">
-          <p className="text-xs text-OrangeRed md:text-sm">Work with us</p>
-          <h3 className="font-extrabold s:text-lg sm:text-xl md:text-2xl">
-            Nuestro Proceso
-          </h3>
-        </header>
-        <p className="text-xs text-start text-SlateGray sm:text-sm">
-          Sagittis scelerisque nulla cursus in enim consectetur quam. Dictum
-          urna sed consectetur neque tristique pellentesque. Blandit amet, sed
-          aenean erat arcu morbi.
-          <br />
-          <br />
-          Bibendum eu nulla feugiat justo, elit adipiscing. Ut tristique sit
-          nisi lorem pulvinar. Urna, laoreet fusce nibh leo. Dictum et et et
-          sit. Faucibus sed non gravida lectus dignissim imperdiet a.
-        </p>
-        <ul className="relative w-full flex flex-col text-xs text-start gap-2 my-4 text-SlateGray sm:text-sm">
-          <li className="flex items-center justify-start gap-2">
-            <div className="w-[5px] h-[5px] rounded-full bg-grayDocient"></div>{" "}
-            Quis elit egestas venenatis mattis dignissim.
-          </li>
-          <li className="flex items-center justify-start gap-2">
-            <div className="w-[5px] h-[5px] rounded-full bg-grayDocient"></div>
-            Cras cras lobortis vitae vivamus ultricies facilisis tempus.
-          </li>
-          <li className="flex items-center justify-start gap-2">
-            <div className="w-[5px] h-[5px] rounded-full bg-grayDocient"></div>
-            Orci in sit morbi dignissim metus diam arcu pretium.
-          </li>
-          <article className="w-full flex items-center justify-end sm:pr-8 md:mt-[-2em]">
-            <div className="w-auto m-0 border border-DarkGray rounded-md">
-              <button className="px-2 py-1 border-r border-DarkGray text-sm font-semibold text-DarkGray">
-                &lt;
-              </button>
-              <button className="px-2 py-1 border-l border-DarkGray text-sm font-semibold text-DarkGray">
-                &gt;
-              </button>
+    return (
+        <article className="w-full flex flex-col items-center justify-center gap-4 text-center base:flex-row base:items-start base:mt-16">
+            <figure className="w-full h-[300px] base:h-[500px]">
+                <Image
+                    width={500}
+                    height={500}
+                    src="/sellCar/2.webp"
+                    alt="imagen de personas"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+            </figure>
+            <div className="w-full flex flex-col px-4">
+                <header className="w-full flex flex-col items-start gap-1 mb-4">
+                    <p className="text-OrangeRed uppercase font-semibold">Nuestro proceso</p>
+                    <h3 className="font-extrabold s:text-lg sm:text-xl md:text-2xl">Venta segura y eficiente</h3>
+                </header>
+                <div className="text-xs text-start text-SlateGray sm:text-lg flex flex-col gap-4">
+                    <p>
+                        Sabemos que tu vehículo tiene un valor especial para ti, y nuestro equipo de expertos está aquí para
+                        ayudarte a obtener el mejor precio por él. Desde el primer contacto hasta la transacción final, te
+                        ofrecemos una experiencia transparente y satisfactoria.
+                    </p>
+                    <p>
+                        Nuestro proceso de tasación es ágil y preciso. Valoramos tu auto basándonos en factores como el año,
+                        modelo, estado y características, para asegurarnos de que obtengas una oferta justa y competitiva. Además,
+                        nuestro equipo estará encantado de asesorarte en todo momento, respondiendo a tus preguntas y brindándote
+                        la información que necesitas para tomar la mejor decisión.
+                    </p>
+                    <p>
+                        ¡Confía en nosotros para vender tu auto usado de manera segura y eficiente! Visita nuestra sección de
+                        "Vender tu auto" y comienza hoy mismo. Estamos emocionados de ser parte de esta importante etapa contigo y
+                        garantizamos que tendrás una experiencia excepcional en nuestro concesionario.
+                    </p>
+                </div>
             </div>
-          </article>
-        </ul>
-        <p className="text-xs text-start text-SlateGray sm:text-sm">
-          Rhoncus nisl, libero egestas diam fermentum dui. At quis tincidunt vel
-          ultricies. Vulputate aliquet velit faucibus semper. Pellentesque in
-          venenatis vestibulum consectetur nibh id. In id ut tempus egestas.
-          Enim sit aliquam nec, a. Morbi enim fermentum lacus in. Viverra.
-        </p>
-      </div>
-    </article>
-  );
+        </article>
+    );
 };
 
 export default OurProcess;
