@@ -1,8 +1,14 @@
 # 🚘 AutoApp - C12-06-t-php-react
 
-desc
+AutoApp es una plataforma que permite a los pequeños y medianos concesionarios en Argentina crear un catálogo digital autosustentable. Su principal objetivo es mejorar la visibilidad y llegar a nuevos clientes, brindándoles la oportunidad de competir de manera efectiva en el mercado.
 
-## ❓ Problema a resolver
+Este proyecto beneficia especialmente a los concesionarios que buscan atraer nuevos clientes a sus negocios. AutoApp facilita la organización del catálogo mediante filtros de marcas, tipos, ciudades e incluso ofertas. Además, fomenta la colaboración en equipo para mantener actualizado el catálogo y establecer un contacto directo con los clientes a través de la integración con WhatsApp.
+
+Otra ventaja importante de AutoApp es que ayuda en la creación de una nueva base de datos obtenida de los formularios de contacto, lo que permite a los concesionarios obtener información valiosa sobre sus clientes y sus preferencias.
+
+Adicionalmente, gracias a la integración de un mapa personalizable proporcionado por Mapbox, los concesionarios pueden identificar fácilmente sus puntos de venta y mostrarlos de manera atractiva a los clientes potenciales.
+
+En última instancia, AutoApp brinda un toque de profesionalismo a los negocios emergentes y a los trabajadores independientes en el mundo digital, permitiéndoles destacar en un mercado competitivo y en constante evolución. Con todas estas características, AutoApp se convierte en una herramienta poderosa para impulsar el crecimiento y éxito de los concesionarios en Argentina.
 
 ## 🚀 Demo del proyecto:
 
