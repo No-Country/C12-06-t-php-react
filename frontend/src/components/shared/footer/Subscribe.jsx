@@ -10,13 +10,13 @@ const Subscribe = () => {
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="Entre your email"
+                    placeholder="Email"
                     className="w-full py-2 pl-2 rounded-md outline-none colorPlace"
                     value={emailSubscribe}
                     onChange={(e) => setEmailSubscribe(e.target.value)}
                 />
             </label>
-            <button className="bg-Coral text-White w-full py-2 pl-2 rounded-md md:w-[180px]">Subscribe</button>
+            <button className="bg-Coral text-White w-full py-2 pl-2 rounded-md md:w-[180px]">Subscribirme</button>
         </article>
     );
 };

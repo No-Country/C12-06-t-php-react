@@ -10,14 +10,16 @@ const Lorem = () => {
                 <header className="w-full flex items-start flex-col gap-4  text-White">
                     <h2 className="font-extrabold text-xl">Contacto</h2>
                     <p className="text-base">
-                        Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor lacus
-                        arcu.
+                        En AutoApp, valoramos tu satisfacción y estamos comprometidos a brindarte una
+                        <span className="font-bold">experiencia de compra excepcional. </span>
+                        No dudes en contactarnos para encontrar el auto usado perfecto que se ajuste a tus necesidades y
+                        presupuesto.
                     </p>
                 </header>
                 <p className="text-White">
-                    742 Evergreen Terrace
+                    Balvanera, Buenos Aires
                     <br />
-                    Springfield, OR 12345
+                    Argentina, ARG 12345
                 </p>
                 <article className="flex flex-col items-start gap-2">
                     <figure className="flex items-center gap-2 text-White">
@@ -30,7 +32,8 @@ const Lorem = () => {
                     </figure>
                 </article>
                 <p className="text-White mb-4">
-                    Looking for careers? <span className="border-b-2">View all job openings.</span>
+                    Esperamos recibir tu mensaje pronto.
+                    <span className="font-bold"> ¡Hagamos juntos realidad el sueño de conducir tu próximo auto usado!</span>
                 </p>
             </div>
         </article>
