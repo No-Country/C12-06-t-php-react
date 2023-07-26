@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/create-product', function () {
+    return view('create-product-form');
+});
+
+Route::post('/create-product', [ProductController::class, 'store'])->name('createProduct');
+
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
 });

@@ -10,31 +10,31 @@ const Footer = () => {
             <div className="w-full flex flex-col items-start justify-start gap-8 md:flex-row">
                 <article className="w-full grid grid-cols-2 gap-y-8 gap-x-4 sm:grid-cols-4">
                     <ul className="w-full">
-                        <span className="text-DarkGray uppercase">SOLUTIONS</span>
+                        <span className="text-DarkGray uppercase">Catálogo</span>
                         {dataFooter.solutions?.map((solution) => (
                             <li key={solution.id} className="text-LightGray">
-                                <Link href="#">{solution.title}</Link>
+                                <Link href={solution.path}>{solution.title}</Link>
                             </li>
                         ))}
                     </ul>
                     <ul className="w-full">
-                        <span className="text-DarkGray uppercase">Company</span>
+                        <span className="text-DarkGray uppercase">Concesionario</span>
                         {dataFooter.company?.map((solution) => (
                             <li key={solution.id} className="text-LightGray">
-                                <Link href="#">{solution.title}</Link>
+                                <Link href={solution.path}>{solution.title}</Link>
                             </li>
                         ))}
                     </ul>
                     <ul className="w-full">
-                        <span className="text-DarkGray uppercase">Support</span>
+                        <span className="text-DarkGray uppercase">Vender</span>
                         {dataFooter.support?.map((solution) => (
                             <li key={solution.id} className="text-LightGray">
-                                <Link href="#">{solution.title}</Link>
+                                <Link href={solution.path}>{solution.title}</Link>
                             </li>
                         ))}
                     </ul>
                     <ul className="w-full">
-                        <span className="text-DarkGray uppercase">Legal</span>
+                        <span className="text-DarkGray uppercase">Política</span>
                         {dataFooter.legal?.map((solution) => (
                             <li key={solution.id} className="text-LightGray">
                                 <Link href="#">{solution.title}</Link>
@@ -43,8 +43,10 @@ const Footer = () => {
                     </ul>
                 </article>
                 <article className="w-full flex flex-col items-start justify-start gap-4 pr-4 md:w-[60%]">
-                    <p className="uppercase font-semibold text-DarkGray">Subscribe to our newsletter</p>
-                    <p className="text-LightGray">The latest news, articles, and resources, sent to your inbox weekly.</p>
+                    <p className="uppercase font-semibold text-DarkGray">Suscríbase a nuestro boletín</p>
+                    <p className="text-LightGray">
+                        Las últimas noticias, artículos y recursos, enviados semanalmente a su bandeja de entrada.
+                    </p>
                     <Subscribe />
                 </article>
             </div>
