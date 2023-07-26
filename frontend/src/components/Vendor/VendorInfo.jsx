@@ -21,7 +21,7 @@ export const VendorInfo = () => {
     ];
 
     return (
-        <section className="w-1/4 p-6 flex flex-col gap-6 shadow-xl h-full min-h-screen">
+        <section className="md:w-1/4 p-6 flex flex-col gap-6 shadow-xl h-full min-h-screen">
             <div>
                 <h1 className="text-2xl font-bold">Marcela Vendedora</h1>
                 <spa className="text-sm text-SlateGray">Años de experiencia</spa>

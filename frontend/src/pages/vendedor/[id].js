@@ -7,7 +7,7 @@ export default function Vendor() {
     return (
         <Layout page={'Vendedor'}>
             <Header />
-            <div className="flex">
+            <div className="flex md:flex-row flex-col">
                 <VendorInfo />
                 <VendorProducts />
             </div>
