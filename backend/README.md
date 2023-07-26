@@ -489,3 +489,62 @@ body:
 Borrar un usuario
 
 `api/users/{id}`
+
+
+## Testimonials
+
+#### GET
+
+Obtener todos los testimonios
+
+`api/testimonials`
+
+#### GET
+
+Obtener un testimonio individual
+
+`api/testimonials/{id}`
+
+#### POST
+
+Crear un nuevo testimonio
+
+`api/testimonials`
+
+body:
+
+```JSON
+{
+    "client_id": "5", // "required|integer",
+    "company": "name_company",// "required",
+    "icon_company": "url del icono",// "required",
+    "comment": "testimonio del cliente",// "required",
+    "avatar": "url del avatar del cliente",// "required",
+    "position": "CEO|COO|Customer|otro",// "required",
+}
+```
+
+#### PUT/PATCH
+
+Actualizar un usuario individual
+
+`api/testimonials/{id}`
+
+body:
+
+```JSON
+{
+    "client_id": "5", // "required|integer",
+    "company": "name_company",// "required",
+    "icon_company": "url del icono",// "required",
+    "comment": "testimonio del cliente",// "required",
+    "avatar": "url del avatar del cliente",// "required",
+    "position": "CEO|COO|Customer|otro",// "required",
+}
+```
+
+#### DELETE
+
+Borrar un testimonio
+
+`api/testimonials/{id}`

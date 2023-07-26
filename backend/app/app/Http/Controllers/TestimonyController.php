@@ -7,12 +7,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class TestimonyController extends Controller {
+
+    protected $cols_to_get = [
+        'testimonials.id',
+        'testimonials.client_id',
+        'u.name as client_name',
+        'u.lastname as client_lastname',
+        'testimonials.company',
+        'testimonials.icon_company',
+        'testimonials.comment',
+        'testimonials.avatar',
+        'testimonials.position',
+    ];
+
     /**
      * Display a listing of the resource.
      */
     public function index() {
-        $testimonials = Testimonials::all();
-        return response()->json($testimonials);
+        $testimonys = Testimonials::join('clients as c', 'testimonials.client_id', 'c.id')
+        ->join('users as u','c.user_id','u.id');
+        $testimonys = $testimonys->get($this->cols_to_get);
+        return response()->json($testimonys);
     }
 
     /**
@@ -48,10 +63,14 @@ class TestimonyController extends Controller {
      */
     public function show(string $id) {
 
-        $testimony = Testimonials::find($id);
-        if (isset($testimony)) {
+        $testimonys = Testimonials::join('clients as c', 'testimonials.client_id', 'c.id')
+        ->join('users as u','c.user_id','u.id')
+        ->where('testimonials.id', $id);;
+
+        $testimonys = $testimonys->get($this->cols_to_get);
+        if (!$testimonys->isEmpty()) {
             return response()->json([
-                'data' => $testimony,
+                'data' => $testimonys,
                 'mensaje' => "Testimonio encontrado"
             ],201);
         } else {
