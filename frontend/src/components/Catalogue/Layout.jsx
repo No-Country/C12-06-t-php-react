@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../shared/navbar/NavBar';
 import Footer from '../shared/footer/Footer';
 import ContentContact from '../contact/ContentContact';
 import Filtered from '../Filterss/Filtered';
