@@ -1,6 +1,6 @@
 import { CarDetails } from '@/components/CarDetails/CarDetails';
 import { RelatedCars } from '@/components/CarDetails/RelatedCars';
-import NavBar from '@/components/NavBar/NavBar';
+import NavBar from '@/components/shared/navbar/NavBar';
 import Footer from '@/components/shared/footer/Footer';
 import { getProductById } from '@/services/getProductById';
 import { getProductsByBrand } from '@/services/getProductsByBrand';
