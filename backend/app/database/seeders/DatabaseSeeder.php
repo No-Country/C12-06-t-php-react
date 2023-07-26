@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder {
         Vendor::factory(20)->create();
         Booking::factory(20)->create();
         Sale::factory(20)->create();
+
+        $this->call(TestimonialsSeeder::class);
     }
 }
