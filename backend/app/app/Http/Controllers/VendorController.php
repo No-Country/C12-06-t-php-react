@@ -66,7 +66,7 @@ class VendorController extends Controller {
             ->join('cities as c', 'p.city_id', 'c.id')
             ->where('vendors.user_id', $id);
         $vendors = $vendors->get($this->cols_to_get);
-        if (isset($vendors)) {
+        if (!$vendors->isEmpty()) {
             return response()->json([
                 'message' => 'Vendedor encontrado',
                 'data' => $vendors,
@@ -111,7 +111,7 @@ class VendorController extends Controller {
                 return response()->json([
                     'data' => $vendor,
                     'mensaje' => "Vendedor eliminado"
-                ], 204);
+                ]);
             } else {
                 return response()->json([
                     'error' => true,
