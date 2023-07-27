@@ -15,6 +15,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
+        'image_id',
         'name',
         'description',
         'year',
@@ -25,6 +26,7 @@ class Product extends Model
         'condition',
         'city_id',
         'calification',
+        'vendor_id'
     ];
 
     /**

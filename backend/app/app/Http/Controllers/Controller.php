@@ -21,6 +21,25 @@ class Controller extends BaseController
 
     public function testDb()
     {
-        return new JsonResponse(['success' => true, 'data' => ['test' => 'test']]);
+        $response = [
+            'success' => true,
+            'data' => [
+                'test' => 'test',
+                'DB_CONNECTION' => getenv('DB_CONNECTION'),
+                'DB_HOST' => getenv('DB_HOST'),
+                'DB_PORT' => getenv('DB_PORT'),
+                'DB_DATABASE' => getenv('DB_DATABASE'),
+                'DB_USERNAME' => getenv('DB_USERNAME'),
+                'DB_PASSWORD' => getenv('DB_PASSWORD'),
+                'MYSQL_ATTR_SSL_CA' => getenv('MYSQL_ATTR_SSL_CA'),
+                'PLANETSCALE_DB' => getenv('PLANETSCALE_DB'),
+                'PLANETSCALE_DB_USERNAME' => getenv('PLANETSCALE_DB_USERNAME'),
+                'PLANETSCALE_DB_PASSWORD' => getenv('PLANETSCALE_DB_PASSWORD'),
+                'PLANETSCALE_DB_HOST' => getenv('PLANETSCALE_DB_HOST'),
+                'PLANETSCALE_SSL_CERT_PAT' => getenv('PLANETSCALE_SSL_CERT_PAT'),
+            ]
+        ];
+
+        return new JsonResponse($response);
     }
 }
