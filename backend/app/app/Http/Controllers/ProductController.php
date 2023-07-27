@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\ApiResponse;
 use App\Http\Helpers\CloudinaryHelper;
 use App\Models\Image;
 use App\Models\Product;
@@ -84,10 +85,7 @@ class ProductController extends Controller
         $products = $products->orderBy('products.id', 'asc')
             ->get($this->cols_to_get);
 
-        return [
-            "success" => true,
-            "data" => $products
-        ];
+        return ApiResponse::create($products);
     }
 
     public function show($id)
@@ -107,10 +105,7 @@ class ProductController extends Controller
             ];
         }
 
-        return [
-            "success" => true,
-            "data" => $product
-        ];
+        return ApiResponse::create($product);
     }
 
     public function store(Request $request)
@@ -178,7 +173,7 @@ class ProductController extends Controller
 
         $product['images_details'] = $new_images;
 
-        return response()->json($product);
+        return ApiResponse::create($product);
     }
 
     public function update(Request $request, $id)
@@ -198,13 +193,13 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product->update($request->all());
-        return response()->json($product);
+        return ApiResponse::create($product);
     }
 
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return response()->json(null, 204);
+        return ApiResponse::create(null);
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\ApiResponse;
 use App\Models\Testimonials;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class TestimonyController extends Controller {
+class TestimonyController extends Controller
+{
 
     protected $cols_to_get = [
         'testimonials.id',
@@ -23,17 +25,19 @@ class TestimonyController extends Controller {
     /**
      * Display a listing of the resource.
      */
-    public function index() {
+    public function index()
+    {
         $testimonys = Testimonials::join('clients as c', 'testimonials.client_id', 'c.id')
-        ->join('users as u','c.user_id','u.id');
+            ->join('users as u', 'c.user_id', 'u.id');
         $testimonys = $testimonys->get($this->cols_to_get);
-        return response()->json($testimonys);
+        return ApiResponse::create($testimonys);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $inputs = $request->all();
         $validator = Validator::make($inputs, [
@@ -51,40 +55,33 @@ class TestimonyController extends Controller {
             return json_encode($validator->errors());
         } else {
             $testimony = Testimonials::create($inputs);
-            return response()->json([
-                'data' => $testimony,
-                'mensaje' => "Registrado con exito"
-            ], 201);
+            return ApiResponse::create($testimony, "Registrado con exito");
         }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {
+    public function show(string $id)
+    {
 
         $testimonys = Testimonials::join('clients as c', 'testimonials.client_id', 'c.id')
-        ->join('users as u','c.user_id','u.id')
-        ->where('testimonials.id', $id);;
+            ->join('users as u', 'c.user_id', 'u.id')
+            ->where('testimonials.id', $id);;
 
         $testimonys = $testimonys->get($this->cols_to_get);
         if (!$testimonys->isEmpty()) {
-            return response()->json([
-                'data' => $testimonys,
-                'mensaje' => "Testimonio encontrado"
-            ],201);
+            return ApiResponse::create($testimonys, "Testimonio encontrado");
         } else {
-            return response()->json([
-                'success' => false,
-                'mensaje' => "Testimonio no encontrado"
-            ]);
+            return ApiResponse::create(null, null, 'Testimonio no encontrado');
         }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id) {
+    public function update(Request $request, string $id)
+    {
         $request->validate([
             'client_id' => 'required|integer',
             'company' => 'required',
@@ -96,36 +93,25 @@ class TestimonyController extends Controller {
 
         $testimony = Testimonials::findOrFail($id);
         $testimony->update($request->all());
-        return response()->json([
-            'data' => $testimony,
-            'mensaje' => "Testimonio actualizado"
-        ]);
+        return ApiResponse::create($testimony, "Testimonio actualizado");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id) {
+    public function destroy(string $id)
+    {
         $testimony = Testimonials::find($id);
 
         if (isset($testimony)) {
             $res = Testimonials::destroy($id);
             if ($res) {
-                return response()->json([
-                    'data' => $testimony,
-                    'mensaje' => "Testimonio eliminado"
-                ]);
+                return ApiResponse::create($testimony, "Testimonio eliminado");
             } else {
-                return response()->json([
-                    'success' => false,
-                    'mensaje' => "Testimonio no eliminado"
-                ]);
+                return ApiResponse::create(null, null, "Testimonio no eliminado");
             }
         } else {
-            return response()->json([
-                'success' => false,
-                'mensaje' => "Testimonio no encontrado"
-            ]);
+            return ApiResponse::create(null, null, "Testimonio no encontrado");
         }
     }
 }

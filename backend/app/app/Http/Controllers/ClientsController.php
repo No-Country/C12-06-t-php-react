@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\ApiResponse;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -10,13 +11,13 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
-        return response()->json($clients);
+        return ApiResponse::create($clients);
     }
 
     public function show($id)
     {
         $client = Client::findOrFail($id);
-        return response()->json($client);
+        return ApiResponse::create($client);
     }
 
     public function store(Request $request)
@@ -28,7 +29,7 @@ class ClientController extends Controller
         ]);
 
         $client = Client::create($request->all());
-        return response()->json($client, 201);
+        return ApiResponse::create($client);
     }
 
     public function update(Request $request, $id)
@@ -41,13 +42,13 @@ class ClientController extends Controller
 
         $client = Client::findOrFail($id);
         $client->update($request->all());
-        return response()->json($client);
+        return ApiResponse::create($client);
     }
 
     public function destroy($id)
     {
         $client = Client::findOrFail($id);
         $client->delete();
-        return response()->json(null, 204);
+        return ApiResponse::create(null);
     }
 }
