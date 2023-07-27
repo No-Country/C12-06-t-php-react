@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helpers\ApiResponse;
+use App\Http\Helpers\CloudinaryHelper;
 use App\Models\Image;
 use Illuminate\Http\Request;
 
@@ -20,9 +21,9 @@ class ImageController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -30,7 +31,36 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $added_images = [];
+        if (is_array($request->file('image'))) {
+            $images_files = $request->file('image');
+
+            foreach ($images_files as $image_file) {
+                $file_uploaded_path = CloudinaryHelper::uploadFile($image_file);
+
+                $created_image = Image::create([
+                    'filename' => $image_file->getClientOriginalName(),
+                    'type' => $request->image_type,
+                    'link' => $file_uploaded_path,
+                ]);
+
+                $added_images[] = $created_image;
+            }
+        } else {
+            $image_file = $request->file('image');
+    
+            $file_uploaded_path = CloudinaryHelper::uploadFile($image_file);
+    
+            $created_image = Image::create([
+                'filename' => $image_file->getClientOriginalName(),
+                'type' => $request->image_type,
+                'link' => $file_uploaded_path,
+            ]);
+
+            $added_images[] = $created_image;
+        }
+
+        return ApiResponse::create($added_images);
     }
 
     /**

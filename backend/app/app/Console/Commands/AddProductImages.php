@@ -3,12 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Http\Helpers\CloudinaryHelper;
-use App\Http\Helpers\ImagesHelper;
-use App\Models\Image;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Console\Command;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AddProductImages extends Command
 {
@@ -38,19 +37,19 @@ class AddProductImages extends Command
         // die();
 
         foreach ($images_to_upload as $image_path) {
-            $image = Storage::disk('public')->get($image_path);
+            // $image = Storage::disk('public')->get($image_path);
 
-            $path = Cloudinary::upload($image_path, [
+            $image_file = new UploadedFile($image_path, Str::after($image_path, '/'));
+
+            $file_path_cloudinary =  Cloudinary::upload($image_file->getRealPath(), [
                 'folder' => 'products/images',
-                'public_id' => $image_path
+                'public_id' => Str::before($image_file->getClientOriginalName(), '.')
             ])->getSecurePath();
 
-                var_dump($path);
-                die();
-
-            // new UploadedFile($image_path);
-            $file_path_cloudinary = CloudinaryHelper::uploadFile($image);
             var_dump($file_path_cloudinary);
+            
+            // new UploadedFile($image_path);
+            // $file_path_cloudinary = CloudinaryHelper::uploadFile($image);
         }
     }
 }
