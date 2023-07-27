@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\CloudinaryHelper;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -22,7 +23,9 @@ class ProductController extends Controller
         'products.calification',
         'c.name as city',
         'c.country as country',
-        // 'i.link',
+        'i.link as image_link',
+        'i.filename as image_filename',
+        'i.type as image_type',
         'products.image_id',
         'u.name as vendor_name',
         'u.lastname as vendor_lastname',
@@ -47,9 +50,9 @@ class ProductController extends Controller
         ];
 
         $products = Product::join('cities as c', 'products.city_id', 'c.id')
-            // ->join('images as i', 'products.image_id', 'i.id')
-            ->join('vendors as v', 'products.id', 'v.product_id')
-            ->join('users as u', 'v.user_id', 'u.id');
+            ->leftJoin('images as i', 'products.image_id', 'i.id')
+            ->leftJoin('vendors as v', 'products.vendor_id', 'v.id')
+            ->leftJoin('users as u', 'v.user_id', 'u.id');
 
         foreach ($filter_options as $filter) {
             $filter_value = $request->query($filter);
@@ -78,23 +81,21 @@ class ProductController extends Controller
             }
         }
 
-        $products = $products->get($this->cols_to_get);
+        $products = $products->orderBy('products.id', 'asc')
+            ->get($this->cols_to_get);
 
-        foreach ($products as $index => $product) {
-            if ($product->image_id) {
-                $image = Image::find($product->image_id);
-
-                $products[$index]['images'] = $image->link;
-            }
-        }
-
-        return response()->json($products);
+        return [
+            "success" => true,
+            "data" => $products
+        ];
     }
 
     public function show($id)
     {
         $product = Product::join('cities as c', 'products.city_id', 'c.id')
-            ->join('images as i', 'products.image_id', 'i.id')
+            ->leftJoin('images as i', 'products.image_id', 'i.id')
+            ->leftJoin('vendors as v', 'products.vendor_id', 'v.id')
+            ->leftJoin('users as u', 'v.user_id', 'u.id')
             ->where('products.id', $id)
             ->first($this->cols_to_get);
 
@@ -114,21 +115,70 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'year' => 'required|integer',
-            'brand' => 'required|integer',
-            'price' => 'required|numeric',
-            'is_offer' => 'required|boolean',
-            'is_trend' => 'required|boolean',
-            'condition' => 'required',
-            'city_id' => 'required|integer',
-            'calification' => 'required|integer|min:1|max:5',
-        ]);
+        $new_images_ids = [];
+        $new_images = [];
+        if (is_array($request->file('image'))) {
+            $images_files = $request->file('image');
 
-        $product = Product::create($request->all());
-        return response()->json($product, 201);
+            foreach ($images_files as $image_file) {
+                $file_uploaded_path = CloudinaryHelper::uploadFile($image_file);
+
+                $created_image = Image::create([
+                    'filename' => $image_file->getClientOriginalName(),
+                    'type' => $request->image_type,
+                    'link' => $file_uploaded_path,
+                ]);
+
+                $new_images_ids[] = $created_image->id;
+                $new_images[] = [
+                    'id' => $created_image->id,
+                    'filename' => $created_image->filename,
+                    'type' => $created_image->type,
+                    'link' => $created_image->link
+                ];
+            }
+        } else {
+            $image_file = $request->file('image');
+
+            $file_uploaded_path = CloudinaryHelper::uploadFile($image_file);
+
+            $created_image = Image::create([
+                'filename' => $image_file->getClientOriginalName(),
+                'type' => $request->image_type,
+                'link' => $file_uploaded_path,
+            ]);
+
+            $new_images_ids[] = $created_image->id;
+            $new_images[] = [
+                'id' => $created_image->id,
+                'filename' => $created_image->filename,
+                'type' => $created_image->type,
+                'link' => $created_image->link
+            ];
+        }
+
+        $productToCreate = [
+            'image_id' => json_encode($new_images_ids),
+            'name' => $request->name,
+            'description' => $request->description,
+            'year' => $request->year,
+            'brand' => $request->brand,
+            'price' => $request->price,
+            'is_offer' => $request->is_offer,
+            'is_trend' => $request->is_trend,
+            'condition' => $request->condition,
+            'city_id' => $request->city_id,
+            'calification' => $request->calification,
+            'vendor_id' => $request->vendor_id
+        ];
+
+        $product = Product::create($productToCreate);
+
+        $product = $product->toArray();
+
+        $product['images_details'] = $new_images;
+
+        return response()->json($product);
     }
 
     public function update(Request $request, $id)
