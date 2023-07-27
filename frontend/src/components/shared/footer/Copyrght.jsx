@@ -38,7 +38,7 @@ const Copyrght = () => {
                 </li>
             </ul>
 
-            <span className="text-DarkGray uppercase">© 2020 Workflow, Inc. All rights reserved.</span>
+            <span className="text-DarkGray uppercase">© 2023 AutoApp</span>
         </article>
     );
 };
