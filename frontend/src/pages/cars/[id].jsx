@@ -6,7 +6,7 @@ import { getProductById } from '@/services/getProductById';
 import { getProductsByBrand } from '@/services/getProductsByBrand';
 
 export default function CarDetail({ product, related }) {
-
+    console.log(product);
     return (
         <>
             <NavBar />
