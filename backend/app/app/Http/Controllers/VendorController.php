@@ -12,18 +12,18 @@ class VendorController extends Controller
     protected $cols_to_get = [
         'vendors.id',
         'vendors.user_id',
-        'vendors.product_id',
+        // 'vendors.product_id',
         'u.name',
         'u.lastname',
         'u.email',
-        'p.name as product',
-        'p.description',
-        'p.year',
-        'p.brand',
-        'p.price',
-        'p.condition',
-        'c.name as city',
-        'c.country as country',
+        // 'p.name as product',
+        // 'p.description',
+        // 'p.year',
+        // 'p.brand',
+        // 'p.price',
+        // 'p.condition',
+        // 'c.name as city',
+        // 'c.country as country',
         'vendors.created_at',
         'vendors.updated_at',
     ];
@@ -35,9 +35,9 @@ class VendorController extends Controller
             'city'
         ];
 
-        $vendors = Vendor::join('users as u', 'vendors.user_id', 'u.id')
-            ->join('products as p', 'vendors.product_id', 'p.id')
-            ->join('cities as c', 'p.city_id', 'c.id');
+        $vendors = Vendor::join('users as u', 'vendors.user_id', 'u.id');
+            // ->join('products as p', 'vendors.product_id', 'p.id')
+            // ->join('cities as c', 'p.city_id', 'c.id');
 
         foreach ($filter_options as $filter) {
             $filter_value = $request->query($filter);
@@ -48,10 +48,10 @@ class VendorController extends Controller
                     continue;
                 }
 
-                if ($filter === 'city') {
-                    $vendors = $vendors->where('c.name', $filter_value);
-                    continue;
-                }
+                // if ($filter === 'city') {
+                //     $vendors = $vendors->where('c.name', $filter_value);
+                //     continue;
+                // }
 
                 $vendors = $vendors->where($filter, $filter_value);
             }
@@ -65,8 +65,8 @@ class VendorController extends Controller
     public function show($id)
     {
         $vendors = Vendor::join('users as u', 'vendors.user_id', 'u.id')
-            ->join('products as p', 'vendors.product_id', 'p.id')
-            ->join('cities as c', 'p.city_id', 'c.id')
+            // ->join('products as p', 'vendors.product_id', 'p.id')
+            // ->join('cities as c', 'p.city_id', 'c.id')
             ->where('vendors.user_id', $id);
         $vendors = $vendors->get($this->cols_to_get);
         if (!$vendors->isEmpty()) {
@@ -80,7 +80,7 @@ class VendorController extends Controller
     {
         $request->validate([
             'user_id' => 'required|integer',
-            'product_id' => 'required|integer',
+            // 'product_id' => 'required|integer',
         ]);
 
         $vendor = Vendor::create($request->all());
@@ -91,7 +91,7 @@ class VendorController extends Controller
     {
         $request->validate([
             'user_id' => 'required|integer',
-            'product_id' => 'required|integer',
+            // 'product_id' => 'required|integer',
         ]);
 
         $vendor = Vendor::findOrFail($id);

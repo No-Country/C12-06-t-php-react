@@ -202,4 +202,51 @@ class ProductController extends Controller
         $product->delete();
         return ApiResponse::create(null);
     }
+
+    public function related($id) {
+
+        $product = Product::find($id);
+
+        if ($product === null) {
+            return ApiResponse::create(null, "Producto no encontrado", ".");
+        }
+
+        $relatedProducts = Product::where('id', '!=', $id)
+            ->where(function ($query) use ($product) {
+                $minPrice = $product->price * 0.5;
+                $maxPrice = $product->price * 1.5;
+                $query->whereBetween('price', [$minPrice, $maxPrice])
+                    ->where('brand', '=', $product->brand)
+                    ->where('city_id', '=', $product->city_id);
+            })
+            ->orderBy('calification', 'desc')
+            ->get();
+
+        $count = $relatedProducts->count();
+
+        if ($count < 3) {
+            $relatedProducts = Product::where('id', '!=', $id)
+                ->where('brand', '=', $product->brand)
+                ->where('city_id', '=', $product->city_id)
+                ->orderBy('calification', 'desc')
+                ->get();
+
+            $count = $relatedProducts->count();
+            if ($count < 3) {
+                $relatedProducts = Product::where('id', '!=', $id)
+                    ->where('city_id', '=', $product->city_id)
+                    ->orderBy('calification', 'desc')
+                    ->get();
+
+                $count = $relatedProducts->count();
+            }
+        }
+
+
+        if ($count > 0) {
+            return ApiResponse::create($relatedProducts, "Productos encontrados", "");
+        } else {
+            return ApiResponse::create([], "", "No se encontraron productos relacionados");
+        }
+    }
 }
