@@ -16,7 +16,6 @@ class CreateVendorTable extends Migration
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
             $table->timestamps();
 
             // Not allowed on PlanetScale

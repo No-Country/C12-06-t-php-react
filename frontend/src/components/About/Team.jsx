@@ -3,34 +3,41 @@ import { TeamCard } from './TeamCard';
 export const Team = () => {
     const team = [
         {
-            name: 'Emma Dorsey',
-            role: 'Senior Front-end Developer',
-            text: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+            name: 'Julia Fernandez',
+            path: '/about/team1.webp',
+            role: 'Especialista en Asesoramiento Personalizado',
+            text: 'Amante de los autos y un experto en comprender las necesidades de nuestros clientes. Con una vasta experiencia en el rubro, está comprometido en brindarte una atención personalizada y guiarte en la búsqueda del auto perfecto que se ajuste a tus preferencias y presupuesto. Su pasión por los detalles y su conocimiento del mercado automotriz te aseguran que encontrarás el vehículo ideal para ti.',
         },
         {
-            name: 'Alicia Bell',
-            role: 'Junior Copywriter',
-            text: 'Turpis lectus et amet elementum. Mi duis integer sed in vitae consequat. Nam vitae, in felis mi dui tempus. Porta at turpis eu odio. Et, sed duis in blandit bibendum accumsan. Purus viverra facilisi suspendisse quis est.',
+            name: 'Omar Jurado',
+            path: '/about/team2.webp',
+            role: 'Inspector Certificado de Vehículos Usados',
+            text: 'Inspector certificado es el encargado de realizar exhaustivas inspecciones a cada vehículo para garantizar que estén en óptimas condiciones. Su dedicación y experiencia en mecánica automotriz aseguran que solo los autos que cumplen con nuestros altos estándares de calidad lleguen a nuestra selección de autos usados. Su compromiso con la transparencia y la confianza es un pilar en nuestra misión de satisfacción del cliente.',
         },
         {
-            name: 'Jenny Wilson',
-            role: 'Studio Artist',
-            text: 'Aliquet adipiscing lectus praesent cras sed quis lectus egestas erat. Bibendum curabitur eget habitant feugiat nec faucibus eu lorem suscipit. Vitae vitae tempor enim eget lacus nulla leo.',
+            name: 'Jeferson Ortiz',
+            path: '/about/team3.webp',
+            role: 'Especialista en Financiamiento y Trámites',
+            text: 'Comprar o vender un auto puede implicar trámites complejos. Nuestro especialista en financiamiento y trámites se encarga de que este proceso sea ágil y sencillo para ti. Con su amplio conocimiento en opciones de financiamiento y procedimientos legales, te guiará paso a paso para que obtengas la aprobación y realices los trámites con confianza y sin complicaciones.',
         },
         {
-            name: 'Anna Roberts',
-            role: 'Partner, Creative',
-            text: 'Quis bibendum velit diam tellus sed ut. Faucibus posuere enim, vitae enim eget neque tortor. Metus lectus mattis id id. Tellus ornare etiam id velit ut enim lacinia congue ultrices. Sit morbi vel elit a maecenas mauris elit lectus magna.',
+            name: 'Ana Hernandez',
+            path: '/about/team4.webp',
+            role: 'Atención al Cliente y Soporte Técnico',
+            text: 'Siempre dispuestos a escucharte y responder tus preguntas, son los encargados de brindarte un servicio amable, eficiente y personalizado. Desde consultas sobre nuestros autos usados hasta asistencia técnica en nuestro concesionario virtual, su compromiso es asegurarse de que tengas una experiencia satisfactoria y disfrutes de un excelente servicio en cada interacción.',
         },
     ];
     return (
         <section className="pt-24 flex gap-8 lg:flex-row flex-col">
-            <div className="lg:w-1/3 w-full">
+            <div className="lg:w-1/3 w-full flex flex-col gap-5">
                 <h2 className="font-bold text-4xl">Nuestro equipo</h2>
-                <p className="text-SlateGray text-xl">
-                    Nulla quam felis, enim faucibus proin velit, ornare id pretium. Augue ultrices sed arcu condimentum vestibulum
-                    suspendisse. Volutpat eu faucibus vivamus eget bibendum cras.
-                </p>
+                <div className="text-SlateGray text-xl flex flex-col gap-5">
+                    <p>
+                        Está compuesto por apasionados del mundo automotriz y profesionales altamente capacitados para brindarte
+                        una experiencia excepcional en la compra y venta de autos usados.
+                    </p>
+                    <p>Conócenos y descubre quiénes están detrás de cada paso para hacer realidad tus sueños automovilísticos:</p>
+                </div>
             </div>
             <div className="flex justify-center gap-8 w-full lg:w-2/3 flex-wrap">
                 {team.map((item, index) => (

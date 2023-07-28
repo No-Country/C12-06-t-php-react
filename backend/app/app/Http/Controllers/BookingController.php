@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\ApiResponse;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 
@@ -10,13 +11,13 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::all();
-        return response()->json($bookings);
+        return ApiResponse::create($bookings);
     }
 
     public function show($id)
     {
         $booking = Booking::findOrFail($id);
-        return response()->json($booking);
+        return ApiResponse::create($booking);
     }
 
     public function store(Request $request)
@@ -28,7 +29,7 @@ class BookingController extends Controller
         ]);
 
         $booking = Booking::create($request->all());
-        return response()->json($booking, 201);
+        return ApiResponse::create($booking);
     }
 
     public function update(Request $request, $id)
@@ -41,13 +42,13 @@ class BookingController extends Controller
 
         $booking = Booking::findOrFail($id);
         $booking->update($request->all());
-        return response()->json($booking);
+        return ApiResponse::create($booking);
     }
 
     public function destroy($id)
     {
         $booking = Booking::findOrFail($id);
         $booking->delete();
-        return response()->json(null, 204);
+        return ApiResponse::create(null);
     }
 }

@@ -13,4 +13,7 @@ class Image extends Model
         'type',
         'filename',
     ];
+
+    const PRODUCT_IMAGE = "product_image";
+    const CAROUSEL_IMAGE = "carousel_image";
 }

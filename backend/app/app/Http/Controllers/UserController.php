@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\ApiResponse;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller {
-    public function index() {
+class UserController extends Controller
+{
+    public function index()
+    {
         $users = User::all();
-        return response()->json($users);
+        return ApiResponse::create($users);
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $user = User::find($id);
         if (isset($user)) {
-            return response()->json([
-                'data' => $user,
-                'mensaje' => "Usuario encontrado"
-            ],201);
+            return ApiResponse::create($user, "Usuario encontrado");
         } else {
-            return response()->json([
-                'error' => true,
-                'mensaje' => "Usuario no encontrado"
-            ]);
+            return ApiResponse::create(null, null, "Usuario no encontrado");
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         try {
             $inputs = $request->all();
             $validator = Validator::make($inputs, [
@@ -49,17 +48,15 @@ class UserController extends Controller {
             } else {
                 $inputs['password'] = Hash::make($inputs['password']);
                 $user = User::create($inputs);
-                return response()->json([
-                    'data' => $user,
-                    'mensaje' => "Registrado con exito"
-                ],204);
+                return ApiResponse::create($user, "Registrado con exito");
             }
         } catch (\Exception $e) {
-            return json_encode($e);
+            return ApiResponse::create(null, null, json_encode($e));
         }
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         try {
             $user = User::find($id);
             $upUser = $request->input();
@@ -82,55 +79,37 @@ class UserController extends Controller {
                 } else {
                     $upUser['password'] = Hash::make($upUser['password']);
                     if ($user->update($upUser)) {
-                        return response()->json([
-                            'data' => $user,
-                            'mensaje' => "Usuario actualizado"
-                        ],204);
+                        return ApiResponse::create($user, "Usuario actualizado");
                     } else {
-                        return response()->json([
-                            'error' => true,
-                            'mensaje' => "Usuario no actualizado"
-                        ]);
+                        return ApiResponse::create(null, null, "Usuario no actualizado");
                     }
                 }
             } else {
-                return response()->json([
-                    'error' => true,
-                    'mensaje' => "Usuario no encontrado"
-                ]);
+                return ApiResponse::create(null, null, "Usuario no encontrado");
             }
         } catch (\Exception $e) {
-            return json_encode($e);
+            return ApiResponse::create(null, null, json_encode($e));
         }
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $user = User::find($id);
 
         if (isset($user)) {
             $res = User::destroy($id);
             if ($res) {
-                return response()->json([
-                    'data' => $user,
-                    'mensaje' => "Usuario eliminado"
-                ],204);
+                return ApiResponse::create($user, "Usuario eliminado");
             } else {
-                return response()->json([
-                    'error' => true,
-                    'mensaje' => "Usuario no eliminado"
-                ]);
+                return ApiResponse::create(null, null, "Usuario no eliminado");
             }
         } else {
-            return response()->json([
-                'error' => true,
-                'mensaje' => "Usuario no encontrado"
-            ]);
+            return ApiResponse::create(null, null, "Usuario no encontrado");
         }
     }
 
     public function __construct()
     {
-    $this->middleware('access')->only(['show', 'update']);
+        $this->middleware('access')->only(['show', 'update']);
     }
-
 }
