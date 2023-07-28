@@ -106,9 +106,11 @@ Obtener todas los vendedores
 
 #### GET
 
-Obtener un vendedor(Este esta relacionado directamente con un usuario) y los productos que esté vendiendo
+<!-- Obtener un vendedor(Este esta relacionado directamente con un usuario) y los productos que esté vendiendo -->
+Obtener un vendedor(Este esta relacionado directamente con un usuario)
 
-`api/vendors/{user-id}`
+<!-- `api/vendors/{user-id}` -->
+`api/vendors/{vendors-id}`
 
 #### POST
 
@@ -121,22 +123,21 @@ body:
 ```json
 {
     "user_id": "10"    // "required|integer",
-    "product_id": "20"     // "required|integer",
 }
 ```
 
 #### PUT/PATCH
 
-Actualizar un vendedor(Aqui si va el id del vendedor)
+<!-- Actualizar un vendedor(Aqui si va el id del vendedor) -->
+Actualizar un vendedor
 
-`api/vendors/{vendor-id}`
+`api/vendors/{vendors-id}`
 
 body:
 
 ```json
 {
     "user_id": "10"    // "required|integer",
-    "product_id": "20"     // "required|integer",
 }
 ```
 
