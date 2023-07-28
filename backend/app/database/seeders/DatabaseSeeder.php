@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
@@ -13,12 +12,13 @@ use App\Models\Booking;
 use App\Models\City;
 use App\Models\Sale;
 
-class DatabaseSeeder extends Seeder {
+class DatabaseSeeder extends Seeder
+{
     /**
      * Seed the application's database.
      */
-    public function run(): void {
-
+    public function run(): void
+    {
         User::factory(10)->create();
         City::factory(10)->create();
         Product::factory(30)->create();
@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder {
         Vendor::factory(20)->create();
         Booking::factory(20)->create();
         Sale::factory(20)->create();
+        $this->call(TestimonialsSeeder::class);
+        $this->call(ImageSeeder::class);
     }
 }

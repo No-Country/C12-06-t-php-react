@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\ApiResponse;
 use App\Models\City;
 use Illuminate\Http\Request;
 
@@ -10,13 +11,13 @@ class CityController extends Controller
     public function index()
     {
         $cities = City::all();
-        return response()->json($cities);
+        return ApiResponse::create($cities);
     }
 
     public function show($id)
     {
         $city = City::findOrFail($id);
-        return response()->json($city);
+        return ApiResponse::create($city);
     }
 
     public function store(Request $request)
@@ -28,7 +29,7 @@ class CityController extends Controller
         ]);
 
         $city = City::create($request->all());
-        return response()->json($city, 201);
+        return ApiResponse::create($city,);
     }
 
     public function update(Request $request, $id)
@@ -41,13 +42,13 @@ class CityController extends Controller
 
         $city = City::findOrFail($id);
         $city->update($request->all());
-        return response()->json($city);
+        return ApiResponse::create($city);
     }
 
     public function destroy($id)
     {
         $city = City::findOrFail($id);
         $city->delete();
-        return response()->json(null, 204);
+        return ApiResponse::create(null);
     }
 }

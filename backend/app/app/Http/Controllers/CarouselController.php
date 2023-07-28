@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\ApiResponse;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,7 @@ class CarouselController extends Controller
     public function index()
     {
         $images = Image::all();
-        return response()->json($images);
+        return ApiResponse::create($images);
     }
 
     /**
@@ -29,7 +30,7 @@ class CarouselController extends Controller
 
         $url =  url('/') . Storage::url($imageName);
 
-        try{
+        try {
 
             $image = Image::create([
                 'filename' => $imageName,
@@ -38,17 +39,17 @@ class CarouselController extends Controller
             ]);
 
 
-            return response()->json([
-                'message' => 'Image created successfully',
-                'image' => $image,
-            ], 201);
-
-        }catch(\Exception $e){
+            return ApiResponse::create(
+                $image,
+                'Image created successfully'
+            );
+        } catch (\Exception $e) {
             Storage::disk('public')->delete($imageName);
-            return response()->json([
-                'message' => 'Image not created',
-                'error' => $e->getMessage(),
-            ], 500);
+            return ApiResponse::create(
+                null,
+                "Image not created",
+                $e->getMessage()
+            );
         }
     }
 
@@ -59,7 +60,7 @@ class CarouselController extends Controller
     {
         $image = Image::findOrFail($id);
 
-        return response()->json($image);
+        return ApiResponse::create($image);
     }
 
 
@@ -72,11 +73,11 @@ class CarouselController extends Controller
         try {
             $image = Image::findOrFail($id);
 
-            if($request->image){
+            if ($request->image) {
 
                 Storage::disk('public')->delete($image->filename);
                 // save new image
-                $imageName = Str::random(32).".".$request->file('image')->getClientOriginalExtension();
+                $imageName = Str::random(32) . "." . $request->file('image')->getClientOriginalExtension();
                 Storage::disk('public')->put($imageName, $request->file('image')->get());
                 $url = url('/') . Storage::url($imageName);
                 $image->link = $url;
@@ -85,15 +86,16 @@ class CarouselController extends Controller
             }
 
 
-            return response()->json([
-                'message' => 'Image updated successfully',
-                'image' => $image,
-            ], 200);
+            return ApiResponse::create(
+                $image,
+                'Image updated successfully'
+            );
         } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Image not updated',
-                'error' => $e->getMessage(),
-            ], 500);
+            return ApiResponse::create(
+                null,
+                "Image not updated",
+                $e->getMessage()
+            );;
         }
     }
 
@@ -104,17 +106,19 @@ class CarouselController extends Controller
     {
         $image = Image::findOrFail($id);
 
-        try{
+        try {
             Storage::disk('public')->delete($image->filename);
             $image->delete();
-            return response()->json([
-                'message' => 'Image deleted successfully',
-            ], 200);
-        }catch(\Exception $e){
-            return response()->json([
-                'message' => 'Image not deleted',
-                'error' => $e->getMessage(),
-            ], 500);
+            return ApiResponse::create(
+                null,
+                'Image deleted successfully'
+            );
+        } catch (\Exception $e) {
+            return ApiResponse::create(
+                null,
+                "Image not deleted",
+                $e->getMessage()
+            );;
         }
     }
 }
