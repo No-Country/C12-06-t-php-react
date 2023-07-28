@@ -4,7 +4,7 @@ import { ProductsEndpoints } from './api';
 export const getProductsByBrand = async (brand) => {
     try {
         const res = await axios.get(`${ProductsEndpoints.getByBrand}${brand}`);
-        return res.data;
+        return res.data.data;
     } catch (err) {
         console.log(err);
     }

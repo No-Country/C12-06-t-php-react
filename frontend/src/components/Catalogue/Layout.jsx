@@ -16,7 +16,7 @@ const Layout = ({ page, textBlack, textOrangeRed, data }) => {
     const [offerVisible, setOfferVisible] = useState('0');
     const [resFilter, setResFilter] = useState([]);
 
-    const dataCatalogue = data.slice(0, 12);
+    const dataCatalogue = data.data.slice(0, 12);
 
     useEffect(() => {
         const getDataFilter = async (typeF, filter) => {
